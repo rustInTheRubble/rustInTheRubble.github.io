@@ -96,13 +96,13 @@
         <li><a href="#24-段落">2.4 段落</a></li>
         <li><a href="#25-内联-html-元素">2.5 内联 HTML 元素</a></li>
         <li><a href="#26-强调">2.6 强调</a></li>
-        <li><a href="#28-引用">2.8 引用</a></li>
-        <li><a href="#29-列表">2.9 列表</a></li>
-        <li><a href="#210-代码">2.10 代码</a></li>
-        <li><a href="#211-表格">2.11 表格</a></li>
-        <li><a href="#212-链接">2.12 链接</a></li>
-        <li><a href="#213-脚注">2.13 脚注</a></li>
-        <li><a href="#214-图片">2.14 图片</a></li>
+        <li><a href="#27-引用">2.7 引用</a></li>
+        <li><a href="#28-列表">2.8 列表</a></li>
+        <li><a href="#29-代码">2.9 代码</a></li>
+        <li><a href="#210-表格">2.10 表格</a></li>
+        <li><a href="#211-链接">2.11 链接</a></li>
+        <li><a href="#212-脚注">2.12 脚注</a></li>
+        <li><a href="#213-图片">2.13 图片</a></li>
       </ul>
     </li>
     <li><a href="#3-shortcodes">3 Shortcodes</a>
@@ -266,7 +266,7 @@
 <p>呈现的输出效果如下:</p>
 <p><del>这段文本带有删除线.</del></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Markdown" data-lang="Markdown"><span class="line"><span class="cl">~~这段文本带有删除线.~~
-</span></span></code></pre></div><h3 id="28-引用">2.8 引用</h3>
+</span></span></code></pre></div><h3 id="27-引用">2.7 引用</h3>
 <p>用于在文档中引用其他来源的内容块.</p>
 <p>在要引用的任何文本之前添加 <code>&gt;</code>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Markdown" data-lang="Markdown"><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">**如下所示** 内容为引用.
@@ -282,7 +282,7 @@
 <p>第二层</p>
 </blockquote>
 </blockquote>
-<h3 id="29-列表">2.9 列表</h3>
+<h3 id="28-列表">2.8 列表</h3>
 <h4 id="无序列表">无序列表</h4>
 <p>使用以下任何符号来表示无序列表中的项:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Markdown" data-lang="Markdown"><span class="line"><span class="cl"><span class="k">*</span> 一项内容
@@ -320,7 +320,7 @@
 <li><i class="far fa-square fa-fw" aria-hidden="true"></i> Update the website</li>
 <li><i class="far fa-square fa-fw" aria-hidden="true"></i> Contact the media</li>
 </ul>
-<h3 id="210-代码">2.10 代码</h3>
+<h3 id="29-代码">2.9 代码</h3>
 <h4 id="行内代码">行内代码</h4>
 <p>用 <code>`</code> 包装行内代码段. <code>`</code>得用</p>
 <pre><code>``` ` ``` 或者 `` ` `` 才打的出来...
@@ -461,7 +461,7 @@ line 3 of code
 </span></span><span class="line"><span class="cl"><span class="p">};</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="211-表格">2.11 表格</h3>
+</div><h3 id="210-表格">2.10 表格</h3>
 <p>通过在每个单元格之间添加竖线作为分隔线, 并在标题下添加一行破折号 (也由竖线分隔) 来创建表格. 注意, 竖线不需要垂直对齐.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -507,7 +507,7 @@ line 3 of code
 <p><code>:------:</code>: 居中</p>
 <p><code>------:</code>: 右对齐</p>
 <p><code>:------</code>: 左对齐，（无冒号默认）</p>
-<h3 id="212-链接">2.12 链接</h3>
+<h3 id="211-链接">2.11 链接</h3>
 <h4 id="基本链接">基本链接</h4>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -575,7 +575,7 @@ line 3 of code
 </span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="213-脚注">2.13 脚注</h3>
+</div><h3 id="212-脚注">2.12 脚注</h3>
 <p>脚注使你可以添加注释和参考, 而不会使文档正文混乱. 当你创建脚注时, 会在添加脚注引用的位置出现带有链接的上标编号. 读者可以单击链接以跳至页面底部的脚注内容.</p>
 <p>要创建脚注引用, 请在方括号中添加插入符号和标识符 ([<code>^1</code>]). 标识符可以是数字或单词, 但不能包含空格或制表符. 标识符仅将脚注引用与脚注本身相关联 - 在脚注输出中, 脚注按顺序编号.</p>
 <p>在中括号内使用插入符号和数字以及用冒号和文本来添加脚注内容 (<code>[^1]：这是一段脚注</code>). 你不一定要在文档末尾添加脚注. 可以将它们放在除列表, 引用和表格等元素之外的任何位置.</p>
@@ -597,7 +597,7 @@ line 3 of code
 </div>
 </div><p>这是一个数字脚注<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 <p>这是一个带标签的脚注<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
-<h3 id="214-图片">2.14 图片</h3>
+<h3 id="213-图片">2.13 图片</h3>
 <p>图片的语法与链接相似, 但包含一个在前面的感叹号.括号里也可以是本地路径.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
