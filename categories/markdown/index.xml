@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Markdown - 分类 - 我的博客</title>
+        <link>https://rustintherubble.github.io/categories/markdown/</link>
+        <description>Markdown - 分类 - 我的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/markdown/" rel="self" type="application/rss+xml" /><item>
+    <title>文章撰写 Markdown Shortcode 语法相关</title>
+    <link>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</link>
+    <pubDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</pubDate>
+    <author>小李</author>
+    <guid>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</guid>
+    <description><![CDATA[1 文章前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数. 在LoveIt主题下，主要参数包括： title: 文章标题. subtitle: 文章副标题. date: 这篇文章创建]]></description>
+</item>
+</channel>
+</rss>
