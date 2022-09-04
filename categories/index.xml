@@ -3,7 +3,15 @@
         <title>Categories - 分类 - 我的博客</title>
         <link>https://rustintherubble.github.io/categories/</link>
         <description>Categories - 分类 - 我的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>梯子</title>
+    <link>https://rustintherubble.github.io/categories/%E6%A2%AF%E5%AD%90/</link>
+    <pubDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</pubDate>
+    <author>小李</author>
+    <guid>https://rustintherubble.github.io/categories/%E6%A2%AF%E5%AD%90/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>Markdown</title>
     <link>https://rustintherubble.github.io/categories/markdown/</link>
     <pubDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</pubDate>
