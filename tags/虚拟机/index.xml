@@ -4,7 +4,7 @@
         <link>https://rustintherubble.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</link>
         <description>虚拟机 - 标签 - 我的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/" rel="self" type="application/rss+xml" /><item>
-    <title>使用主机VPN v2rayn为虚拟机ubuntu配置端口，实现虚拟机代理翻墙</title>
+    <title>使用主机VPN v2rayN为虚拟机ubuntu配置端口，实现虚拟机代理翻墙</title>
     <link>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</link>
     <pubDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</pubDate>
     <author>小李</author>
