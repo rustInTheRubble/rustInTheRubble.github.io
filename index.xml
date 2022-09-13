@@ -3,13 +3,21 @@
         <title>我的博客</title>
         <link>https://rustintherubble.github.io/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 13 Sep 2022 15:56:18 &#43;0800</lastBuildDate>
             <atom:link href="https://rustintherubble.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>安装使用高通的 Telematics SDK</title>
+    <link>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</link>
+    <pubDate>Tue, 13 Sep 2022 15:56:18 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</guid>
+    <description><![CDATA[在Telematics SDK User Guide中其实介绍了安装步骤，但是写得很简洁，这里在其手册基础上补充了需要注意的东西 前期准备 参考手册 Qualcomm Telematics SDK User Guide v]]></description>
+</item>
+<item>
     <title>使用主机VPN v2rayN为虚拟机ubuntu配置端口，实现虚拟机代理翻墙</title>
     <link>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</link>
     <pubDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</pubDate>
-    <author>小李</author>
+    <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</guid>
     <description><![CDATA[背景 主机已经配置好了v2rayN科学上网，版本v5.16 虚拟机使用virtual box，系统为ubuntu 20.04，网络模式为NAT 主机端]]></description>
 </item>
@@ -17,7 +25,7 @@
     <title>文章撰写 Markdown Shortcode 语法相关</title>
     <link>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</link>
     <pubDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</pubDate>
-    <author>小李</author>
+    <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</guid>
     <description><![CDATA[文章前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数. 在LoveIt主题下，主要参数包括： title: 文章标题. subtitle: 文章副标题. date: 这篇文章创建的]]></description>
 </item>

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>安装使用高通的 Telematics SDK - 我的博客</title><meta name="Description" content="主要是一些使用Yocto和Repo中需要注意的事项"><meta property="og:title" content="安装使用高通的 Telematics SDK" />
+<meta property="og:description" content="主要是一些使用Yocto和Repo中需要注意的事项" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-09-13T15:56:18+08:00" />
+<meta property="article:modified_time" content="2022-09-13T15:56:18+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="安装使用高通的 Telematics SDK"/>
+<meta name="twitter:description" content="主要是一些使用Yocto和Repo中需要注意的事项"/>
+<meta name="application-name" content="我的博客">
+<meta name="apple-mobile-web-app-title" content="我的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "安装使用高通的 Telematics SDK",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rustintherubble.github.io\/posts\/2022\/09\/building-telematics-sdk\/"
+        },"genre": "posts","keywords": "Telematics SDK, Yocto","wordcount":  1754 ,
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2022\/09\/building-telematics-sdk\/","datePublished": "2022-09-13T15:56:18+08:00","dateModified": "2022-09-13T15:56:18+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "渤海深处"
+            },"description": "主要是一些使用Yocto和Repo中需要注意的事项"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的博客">我的博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/"> 首页 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的博客">我的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/" title="">首页</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">安装使用高通的 Telematics SDK</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/sdk%E5%AE%89%E8%A3%85/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>SDK安装</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-09-13">2022-09-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1754 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;
+
+                <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span>
+                  </span>次
+            </div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ol>
+    <li><a href="#前期准备">前期准备</a>
+      <ol>
+        <li><a href="#参考手册">参考手册</a></li>
+        <li><a href="#虚拟机配置">虚拟机配置</a></li>
+      </ol>
+    </li>
+    <li><a href="#安装依赖">安装依赖</a></li>
+    <li><a href="#安装-repo">安装 repo</a>
+      <ol>
+        <li><a href="#创建repo存放目录bin并配置环境变量">创建repo存放目录bin，并配置环境变量</a></li>
+        <li><a href="#下载repo启动程序">下载repo启动程序</a></li>
+        <li><a href="#更改repo-url">更改repo url</a></li>
+      </ol>
+    </li>
+    <li><a href="#配置代理和-git">配置代理和 Git</a>
+      <ol>
+        <li><a href="#代理配置">代理配置</a></li>
+        <li><a href="#git配置">Git配置</a></li>
+      </ol>
+    </li>
+    <li><a href="#获取-repo-配置和脚本集">获取 repo 配置和脚本集</a></li>
+    <li><a href="#下载更改并更新本地工作文件">下载更改并更新本地工作文件</a>
+      <ol>
+        <li><a href="#执行命令">执行命令</a></li>
+        <li><a href="#repo-sync卡住的问题">repo sync卡住的问题</a></li>
+        <li><a href="#repo-sync产生大量压缩文件的问题">repo sync产生大量压缩文件的问题</a></li>
+      </ol>
+    </li>
+    <li><a href="#更改本地-conf-配置文件">更改本地 conf 配置文件</a>
+      <ol>
+        <li><a href="#更新telux和telephony库">更新Telux和Telephony库</a></li>
+        <li><a href="#更改machine名称">更改MACHINE名称</a></li>
+        <li><a href="#更改同时执行的任务数线程数">更改同时执行的任务数线程数</a></li>
+      </ol>
+    </li>
+    <li><a href="#source-bitbake-环境">Source bitbake 环境</a></li>
+    <li><a href="#构建和安装yocto平台sdk">构建和安装Yocto平台SDK</a></li>
+    <li><a href="#大功告成">大功告成</a></li>
+  </ol>
+</nav></div>
+            </div><div class="content" id="content"><blockquote>
+<p>在Telematics SDK User Guide中其实介绍了安装步骤，但是写得很简洁，这里在其手册基础上补充了需要注意的东西</p>
+</blockquote>
+<h2 id="前期准备">前期准备</h2>
+<h3 id="参考手册">参考手册</h3>
+<p>Qualcomm Telematics SDK User Guide v1.26.15，<a href="https://developer.qualcomm.com/software/qualcomm-telematics-sdk/tools" target="_blank" rel="noopener noreffer ">不同版本手册链接</a></p>
+<p>不同硬件需要更换不同版本的SDK，详见<a href="https://developer.qualcomm.com/software/qualcomm-telematics-sdk/release-notes" target="_blank" rel="noopener noreffer ">发行说明</a></p>
+<hr>
+<h3 id="虚拟机配置">虚拟机配置</h3>
+<p>ubuntu 14.04 64位（按照Telematics SDK User Guide指导选择），推荐内存分配4G以上，硬盘80G以上</p>
+<h2 id="安装依赖">安装依赖</h2>
+<p>安装依赖
+<code>sudo apt-get install gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm</code></p>
+<h2 id="安装-repo">安装 repo</h2>
+<h3 id="创建repo存放目录bin并配置环境变量">创建repo存放目录bin，并配置环境变量</h3>
+<pre><code>mkdir ~/bin
+PATH=~/bin:$PATH
+</code></pre>
+<h3 id="下载repo启动程序">下载repo启动程序</h3>
+<pre><code>curl https://storage.googleapis.com/git-repo-downloads/repo &gt; ~/bin/repo
+chmod a+x ~/bin/repo
+</code></pre>
+<p>可改用清华源，没试过，详见<a href="https://mirror.tuna.tsinghua.edu.cn/help/git-repo/" target="_blank" rel="noopener noreffer ">清华镜像站repo使用帮助</a></p>
+<pre><code>curl https://mirrors.tuna.tsinghua.edu.cn/git/git-repo -o repo
+chmod +x repo
+</code></pre>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>注意<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">以上命令在普通用户下执行，<code>repo</code>会保存在<code>/home/user/bin</code>下，<code>root</code>用户执行会保存在<code>/root/bin</code>下</div>
+        </div>
+    </div>
+<h3 id="更改repo-url">更改repo url</h3>
+<p>更改bin里面的repo文件,将里面的<code>REPO_URL</code>改为清华镜像的地址
+<code>https://mirrors.tuna.tsinghua.edu.cn/git/git-repo</code></p>
+<h2 id="配置代理和-git">配置代理和 Git</h2>
+<h3 id="代理配置">代理配置</h3>
+<p>代理配置写在了另外一篇<a href="https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/" target="_blank" rel="noopener noreffer ">博客</a></p>
+<h3 id="git配置">Git配置</h3>
+<p>使用以下命令配置邮箱和名字</p>
+<pre><code>git config --global user.email &quot;your email&quot;
+git config --global user.name &quot;your github name&quot;
+</code></pre>
+<p>使用<code>git config --global --list</code>查看配置结果</p>
+<h2 id="获取-repo-配置和脚本集">获取 repo 配置和脚本集</h2>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>注意<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">这条和之后的都不要在中文目录下执行，否则之后生成的文件里会包含中文导致错误</div>
+        </div>
+    </div>
+<p>因为 repo 只支持 <code>python 3.5</code> 及以上的，我这里在ubuntu 14里安装了<code>python 3.8</code>。如果安装完显示找不到python3.8，则执行</p>
+<p><code>PATH=/usr/local/python/python3.8/bin:$PATH</code></p>
+<hr>
+<p>然后下载或更新好repo配置和脚本集</p>
+<p><code>python3 ~/bin/repo init -q -u git://codeaurora.org/quic/le/le/manifest.git -b release -m caf_AU_LINUX_EMBEDDED_LE.UM.1.3.2.R1_TARGET_ALL.01.159.076.xml</code></p>
+<p>这里xml可以更改，可参考codeaurora上的<a href="https://source.codeaurora.org/quic/le/le/manifest/refs/?h=IMM.LE.1.0" target="_blank" rel="noopener noreffer ">目录</a>
+更改后注意在<code>AU</code>前面添加<code>caf_</code>，末位添加.<code>xml</code></p>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw" aria-hidden="true"></i>注意<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">Qualcomm Innovation Center Inc. 维护的存储库已迁移到<a href="https://git.codelinaro.org" target="_blank" rel="noopener noreffer ">codelinaro</a>。
+codeaurora站点上的 QUIC 存储库在2022 年 3 月 31 日之后停止更新，并将于 2023 年 3 月 31 日删除。codelinaro上的目录应该在<a href="https://git.codelinaro.org/clo/le/le/manifest" target="_blank" rel="noopener noreffer ">这里</a>。</div>
+        </div>
+    </div>
+<h2 id="下载更改并更新本地工作文件">下载更改并更新本地工作文件</h2>
+<h3 id="执行命令">执行命令</h3>
+<p><code>python3 ~/bin/repo sync -j 32</code>
+'</p>
+<p>-j threadcount：将同步操作拆分成多个线程，以更快地完成。如需查看可用 CPU 的数量，请先运行：<code>nproc --all</code></p>
+<h3 id="repo-sync卡住的问题">repo sync卡住的问题</h3>
+<p><code>repo sync</code>会消耗大量空间，容易跑着跑着无反应，判断是否卡死的办法一是看网络速率，二是看磁盘读写。如果接收为0，但磁盘在读写，存储空间在变小也不需要取消，如果是虚拟机建议打开运行状态时常查看。</p>
+<h3 id="repo-sync产生大量压缩文件的问题">repo sync产生大量压缩文件的问题</h3>
+<p><code>repo sync</code>是可以断点续传的，直接<code>ctrl c</code>重新输入命令。但是重跑命令也会带来产生大量垃圾压缩文件的问题。在下载目录里占用很大空间的文件夹里一般可以找到名称是<code>tmp_pack_XXXXXX</code>的压缩包，后面六位是由 repo调用的git根据当前时间随机生成的。当网络超时就会中断repo同步过程，重新开始repo同步过程到断点处会生成一个压缩文件名进行下载，这就导致原有的压缩文件成为垃圾文件。</p>
+<h2 id="更改本地-conf-配置文件">更改本地 conf 配置文件</h2>
+<h3 id="更新telux和telephony库">更新Telux和Telephony库</h3>
+<p>sync完成后在<code>poky/build/conf/local.conf</code>的末尾添加以下几行</p>
+<p>For LE.UM.1.3.2 target</p>
+<pre><code>CORE_IMAGE_EXTRA_INSTALL += &quot;telux&quot;
+CORE_IMAGE_EXTRA_INSTALL += &quot;telux-lib&quot;
+</code></pre>
+<p>For LE.UM.1.3.r5 target</p>
+<pre><code>1 CORE_IMAGE_EXTRA_INSTALL += &quot;telux&quot;
+2 CORE_IMAGE_EXTRA_INSTALL += &quot;telephony-lib&quot;
+</code></pre>
+<h3 id="更改machine名称">更改MACHINE名称</h3>
+<p>在<code>poky/meta-qti-bsp/conf/machine</code>目录下查看项目支持的MACHINE名称，文件名去掉后缀就是。继续改之前的<code>poky/build/conf/local.conf</code>，将里面<code>MACHINE</code>的值改为machine目录下conf的名称。如希望是<code>xxx.conf</code>，则<code>MACHINE ??= “xxx”</code></p>
+<h3 id="更改同时执行的任务数线程数">更改同时执行的任务数线程数</h3>
+<p>改小配置里的线程数，或者增大内存。否则出现<code>ERROR: Worker process (12928) exited unexpectedly (-9), shutting down...</code>或<code>failed with exit code '1'</code>的错误。这种错误一般会在内存被占满时出现。</p>
+<p>conf文件中</p>
+<p><code>BB_NUMBER_THREADS</code> 同时执行任务数改为 <code>4</code></p>
+<p><code>PARALLEL_MAKE</code> 同时执行线程数改为<code>-j 2</code></p>
+<h2 id="source-bitbake-环境">Source bitbake 环境</h2>
+<p>执行命令,需要python2</p>
+<pre><code>cd poky/
+source build/conf/set_bb_env.sh
+</code></pre>
+<p>执行完该命令后会自动切换到<code>poky/build</code>目录下，对于<code>bitbake</code>以及<code>buildclean</code>命令在该目录下执行</p>
+<h2 id="构建和安装yocto平台sdk">构建和安装Yocto平台SDK</h2>
+<p>执行命令
+<code>bitbake core-image-minimal -c do_populate_sdk</code>
+对于上来就出错，如下面的错
+<code>ERROR: ParseError at /home/user/telSDK/poky/meta-qti-location/recipes/location/location-hal-daemon_git.bb:1: Could not inherit file classes/qlicense.bbclass</code>我的办法是换<code>init</code>的xml，并确认系统版本是否符合。</p>
+<h2 id="大功告成">大功告成</h2>
+<p>在成功编译后，在位置<code>poky/build/tmp-glibc/deploy/sdk/</code>上可以找到sdk安装程序
+<code>poky/build/tmp-glibc/deploy/sdk/oecore-x86_64-cortexa8hf-vfp-neon-toolchain-nodistro.0.sh</code></p>
+<p>然后就可以运行这个sh构建Telematics SDK环境了。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-09-13</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" data-title="安装使用高通的 Telematics SDK" data-hashtags="Telematics SDK,Yocto"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" data-hashtag="Telematics SDK"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" data-title="安装使用高通的 Telematics SDK"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" data-title="安装使用高通的 Telematics SDK"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" data-title="安装使用高通的 Telematics SDK"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/telematics-sdk/">Telematics SDK</a>,&nbsp;<a href="/tags/yocto/">Yocto</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2022/09/virtualbox-proxy/" class="prev" rel="prev" title="使用主机VPN v2rayN为虚拟机ubuntu配置端口，实现虚拟机代理翻墙"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>使用主机VPN v2rayN为虚拟机ubuntu配置端口，实现虚拟机代理翻墙</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">渤海深处</a></span>
+                <div >
+                    <i class="fa fa-user"></i>&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;|&nbsp;
+                    <i class="fa fa-eye"></i>&nbsp;<span id="busuanzi_value_site_pv"></span>
+                </div>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"gitalk":{"admin":["rustInTheRubble"],"clientID":"68458203ea232e8a6c8a","clientSecret":"c9fd1ba7687d190c51b209d6e54d10d314432ac3","id":"2022-09-13T15:56:18+08:00","owner":"rustInTheRubble","repo":"rustInTheRubble.github.io","title":"安装使用高通的 Telematics SDK"}}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

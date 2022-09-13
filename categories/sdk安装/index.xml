@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>SDK安装 - 分类 - 我的博客</title>
+        <link>https://rustintherubble.github.io/categories/sdk%E5%AE%89%E8%A3%85/</link>
+        <description>SDK安装 - 分类 - 我的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 13 Sep 2022 15:56:18 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/sdk%E5%AE%89%E8%A3%85/" rel="self" type="application/rss+xml" /><item>
+    <title>安装使用高通的 Telematics SDK</title>
+    <link>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</link>
+    <pubDate>Tue, 13 Sep 2022 15:56:18 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</guid>
+    <description><![CDATA[在Telematics SDK User Guide中其实介绍了安装步骤，但是写得很简洁，这里在其手册基础上补充了需要注意的东西 前期准备 参考手册 Qualcomm Telematics SDK User Guide v]]></description>
+</item>
+</channel>
+</rss>

@@ -7,7 +7,7 @@
     <title>使用主机VPN v2rayN为虚拟机ubuntu配置端口，实现虚拟机代理翻墙</title>
     <link>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</link>
     <pubDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</pubDate>
-    <author>小李</author>
+    <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</guid>
     <description><![CDATA[背景 主机已经配置好了v2rayN科学上网，版本v5.16 虚拟机使用virtual box，系统为ubuntu 20.04，网络模式为NAT 主机端]]></description>
 </item>
