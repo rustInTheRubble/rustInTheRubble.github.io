@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - 分类 - 我的博客</title>
+        <link>https://rustintherubble.github.io/categories/linux/</link>
+        <description>Linux - 分类 - 我的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>为 i.MX 6 开发板配置 Linux 驱动</title>
+    <link>https://rustintherubble.github.io/posts/2022/10/linux_driver/</link>
+    <pubDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/10/linux_driver/</guid>
+    <description><![CDATA[内核驱动 开发板使用的是飞凌的OKMX6Q-S3开发板，搭载的是NXP i.MX6Quad. 这里以cp210x usb转串口驱动为例 cp210x驱动在linux 2.]]></description>
+</item>
+</channel>
+</rss>
