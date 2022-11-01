@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>V2X - 分类 - 我的博客</title>
+        <link>https://rustintherubble.github.io/categories/v2x/</link>
+        <description>V2X - 分类 - 我的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/v2x/" rel="self" type="application/rss+xml" /><item>
+    <title>抽象语法标记ASN.1与V2X</title>
+    <link>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</link>
+    <pubDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</guid>
+    <description><![CDATA[基础介绍 根据维基百科的介绍，Abstract Syntax Notation One ( ASN.1 ) 是一种标准接口描述语言，用于定义可以以跨平台方式进行序列化和反序列化的数据结构。它广]]></description>
+</item>
+<item>
+    <title>安装使用高通的 Telematics SDK</title>
+    <link>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</link>
+    <pubDate>Tue, 13 Sep 2022 15:56:18 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</guid>
+    <description><![CDATA[在Telematics SDK User Guide中其实介绍了安装步骤，但是写得很简洁，这里在其手册基础上补充了需要注意的东西 前期准备 参考手册 Qualcomm Telematics SDK User Guide v]]></description>
+</item>
+</channel>
+</rss>

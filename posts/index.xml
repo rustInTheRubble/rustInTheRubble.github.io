@@ -3,7 +3,15 @@
         <title>所有文章 - 我的博客</title>
         <link>https://rustintherubble.github.io/posts/</link>
         <description>所有文章 | 我的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>抽象语法标记ASN.1与V2X</title>
+    <link>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</link>
+    <pubDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</guid>
+    <description><![CDATA[基础介绍 根据维基百科的介绍，Abstract Syntax Notation One ( ASN.1 ) 是一种标准接口描述语言，用于定义可以以跨平台方式进行序列化和反序列化的数据结构。它广]]></description>
+</item>
+<item>
     <title>为 i.MX 6 开发板配置 Linux 驱动</title>
     <link>https://rustintherubble.github.io/posts/2022/10/linux_driver/</link>
     <pubDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</pubDate>

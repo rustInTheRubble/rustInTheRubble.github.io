@@ -17,7 +17,7 @@
 <meta name="application-name" content="我的博客">
 <meta name="apple-mobile-web-app-title" content="我的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2022/10/linux_driver/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2022/10/linux_driver/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/" /><link rel="next" href="https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rustintherubble.github.io\/posts\/2022\/10\/linux_driver\/"
-        },"genre": "posts","keywords": "驱动安装","wordcount":  714 ,
+        },"genre": "posts","keywords": "linux驱动安装","wordcount":  714 ,
         "url": "https:\/\/rustintherubble.github.io\/posts\/2022\/10\/linux_driver\/","datePublished": "2022-10-09T17:02:23+08:00","dateModified": "2022-10-09T17:02:23+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -168,19 +168,20 @@ deb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted unive
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动" data-hashtags="驱动安装"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-hashtag="驱动安装"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动" data-hashtags="linux驱动安装"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-hashtag="linux驱动安装"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://rustintherubble.github.io/posts/2022/10/linux_driver/" data-title="为 i.MX 6 开发板配置 Linux 驱动"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
 
     <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">驱动安装</a></section>
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/linux%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/">linux驱动安装</a></section>
         <section>
             <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/2022/09/building-telematics-sdk/" class="prev" rel="prev" title="安装使用高通的 Telematics SDK"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>安装使用高通的 Telematics SDK</a></div>
+    <div class="post-nav"><a href="/posts/2022/09/building-telematics-sdk/" class="prev" rel="prev" title="安装使用高通的 Telematics SDK"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>安装使用高通的 Telematics SDK</a>
+            <a href="/posts/2022/11/01/asn.1-v2x/" class="next" rel="next" title="抽象语法标记ASN.1与V2X">抽象语法标记ASN.1与V2X<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
