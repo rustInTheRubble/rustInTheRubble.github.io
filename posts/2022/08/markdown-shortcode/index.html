@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>文章撰写 Markdown Shortcode 语法相关 - 我的博客</title><meta name="Description" content="边学边练"><meta property="og:title" content="文章撰写 Markdown Shortcode 语法相关" />
-<meta property="og:description" content="边学边练" />
+        <title>文章撰写 Markdown Shortcode 语法相关 - 我的博客</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="文章撰写 Markdown Shortcode 语法相关" />
+<meta property="og:description" content="边学边手搓 文章前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数. 在LoveIt主题下，主要参数包括： title: 文章标题. subtitle: 文章副标题. date: 这篇" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-08-23T11:29:06+08:00" />
@@ -13,7 +13,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="文章撰写 Markdown Shortcode 语法相关"/>
-<meta name="twitter:description" content="边学边练"/>
+<meta name="twitter:description" content="边学边手搓 文章前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数. 在LoveIt主题下，主要参数包括： title: 文章标题. subtitle: 文章副标题. date: 这篇"/>
 <meta name="application-name" content="我的博客">
 <meta name="apple-mobile-web-app-title" content="我的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -28,13 +28,13 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rustintherubble.github.io\/posts\/2022\/08\/markdown-shortcode\/"
-        },"genre": "posts","keywords": "Markdown, shortcodes","wordcount":  3013 ,
+        },"genre": "posts","keywords": "Markdown, shortcodes","wordcount":  3053 ,
         "url": "https:\/\/rustintherubble.github.io\/posts\/2022\/08\/markdown-shortcode\/","datePublished": "2022-08-23T11:29:06+08:00","dateModified": "2022-08-23T11:29:06+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
                 "name": "渤海深处"
-            },"description": "边学边练"
+            },"description": ""
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -72,7 +72,7 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">文章撰写 Markdown Shortcode 语法相关</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/markdown/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Markdown</a>&nbsp;<a href="/categories/shortcodes/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>shortcodes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-23">2022-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3013 字&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-23">2022-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3053 字&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;
 
                 <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
@@ -141,7 +141,10 @@
     </li>
   </ol>
 </nav></div>
-            </div><div class="content" id="content"><h2 id="文章前置参数">文章前置参数</h2>
+            </div><div class="content" id="content"><blockquote>
+<p>边学边手搓</p>
+</blockquote>
+<h2 id="文章前置参数">文章前置参数</h2>
 <p><strong>Hugo</strong> 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数.</p>
 <p>在LoveIt主题下，主要参数包括：</p>
 <ul>
@@ -624,7 +627,7 @@ line 3 of code
 </div><p>这是一个数字脚注<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 <p>这是一个带标签的脚注<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></p>
 <h3 id="图片">图片</h3>
-<p>图片的语法与链接相似, 但包含一个在前面的感叹号.括号里也可以是本地路径.</p>
+<p>图片的语法与链接相似, 但包含一个在前面的感叹号.括号里也可以是本地路径，但是路径里名字不能包含空格.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -651,7 +654,7 @@ line 3 of code
 <pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="nt">figure</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;/images/lighthouse.jpg&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="p">&gt;</span>}}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>图片保存于<code>static\images</code>目录下，显示效果：
+</div><p>图片保存于<code>static\images</code>目录下，另外可以添加height，width参数，显示效果：
 <figure><img src="/images/lighthouse.jpg"/>
 </figure>
 </p>

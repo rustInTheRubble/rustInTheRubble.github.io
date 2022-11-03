@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>协议标准 - 标签 - 我的博客</title>
+        <link>https://rustintherubble.github.io/tags/%E5%8D%8F%E8%AE%AE%E6%A0%87%E5%87%86/</link>
+        <description>协议标准 - 标签 - 我的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/%E5%8D%8F%E8%AE%AE%E6%A0%87%E5%87%86/" rel="self" type="application/rss+xml" /><item>
+    <title>《YD_T 3594-2019 基于LTE的车联网通信安全技术要求》阅读笔记——PC5 </title>
+    <link>https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/</link>
+    <pubDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/</guid>
+    <description><![CDATA[通信架构 C-V2X通信有两种操作模式，基于PC5和基于LTE-Uu，这个标准涵盖了这两个模式。但目前自己可能更关注PC5一些。 考虑V2X设备]]></description>
+</item>
+</channel>
+</rss>

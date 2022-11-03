@@ -3,7 +3,15 @@
         <title>所有文章 - 我的博客</title>
         <link>https://rustintherubble.github.io/posts/</link>
         <description>所有文章 | 我的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>《YD_T 3594-2019 基于LTE的车联网通信安全技术要求》阅读笔记——PC5 </title>
+    <link>https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/</link>
+    <pubDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/</guid>
+    <description><![CDATA[通信架构 C-V2X通信有两种操作模式，基于PC5和基于LTE-Uu，这个标准涵盖了这两个模式。但目前自己可能更关注PC5一些。 考虑V2X设备]]></description>
+</item>
+<item>
     <title>抽象语法标记ASN.1与V2X</title>
     <link>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</link>
     <pubDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</pubDate>
@@ -41,7 +49,7 @@
     <pubDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</pubDate>
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</guid>
-    <description><![CDATA[文章前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数. 在LoveIt主题下，主要参数包括： title: 文章标题. subtitle: 文章副标题. date: 这篇文章创建的]]></description>
+    <description><![CDATA[边学边手搓 文章前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数. 在LoveIt主题下，主要参数包括： title: 文章标题. subtitle: 文章副标题. date: 这篇]]></description>
 </item>
 </channel>
 </rss>
