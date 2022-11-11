@@ -113,7 +113,7 @@
 <p>考虑V2X设备同时具备PC5和LTE-Uu模式，那么Uu模式下具有归属地，标准中将基于PC5和LTE-Uu的V2X通信架构划分出了漫游和非漫游的情况。</p>
 <p>基于LTE的车联网通信安全包括承载安全（PC5安全或LTE-Uu安全）和V2X应用安全两部分。承载安全都是PDCP、RLC、MAC、PHY。V2X应用安全除了V2X应用，PC5比Uu多了一个V2X网络层。</p>
 <p>整个应用层通信安全架构如图
-<figure><img src="/images/Communication%20security%20architecture%20of%20Internet%20of%20Vehicles%20application%20layer.jpg" width="519px" height="410px"/>
+<figure><img src="/images/Communication%20security%20architecture%20of%20Internet%20of%20Vehicles%20application%20layer.jpg" width="519" height="410"/>
 </figure>
 </p>
 <hr>
@@ -135,7 +135,7 @@
 <p>接收方：接收方的V2X设备可将颁发公钥证书(Co)的CA证书(Cca2)设置为可信证书，接收方的V2X设备利用上述CA证书验证发送方的公钥证书，这样V5接口消息中可以不携带完整证书链，从而节省了空口传输资源。验证过程为首先利用CA公钥证书验证消息中携带的公钥证书或证书链，然后利用公钥证书中的公钥验证签名以检查消息的完整性。</p>
 <p>接收方V2X设备成功验证对端的公钥证书(Co)后，可将该证书的hash值保存在本地，后续可以通过验证证书hash的方式验证该证书，从而减少证书验证所需的密码学操作。</p>
 <p>整个安全流程如图
-<figure><img src="/images/V5_Interface_safety_process.jpg" width="678px" height="498px"/>
+<figure><img src="/images/V5_Interface_safety_process.jpg" width="678" height="498"/>
 </figure>
 </p>
 <h3 id="安全基本元素说明">安全基本元素说明</h3>
