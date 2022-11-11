@@ -28,7 +28,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rustintherubble.github.io\/posts\/2022\/08\/markdown-shortcode\/"
-        },"genre": "posts","keywords": "Markdown, shortcodes","wordcount":  3080 ,
+        },"genre": "posts","keywords": "Markdown, shortcodes","wordcount":  3745 ,
         "url": "https:\/\/rustintherubble.github.io\/posts\/2022\/08\/markdown-shortcode\/","datePublished": "2022-08-23T11:29:06+08:00","dateModified": "2022-08-23T11:29:06+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -72,8 +72,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">文章撰写 Markdown Shortcode 语法相关</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/markdown/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Markdown</a>&nbsp;<a href="/categories/shortcodes/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>shortcodes</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-23">2022-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3080 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 7 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-08-23">2022-08-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 3745 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 8 分钟&nbsp;
 
                 <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
                 <span id="busuanzi_container_page_pv">
@@ -115,7 +115,7 @@
             <li><a href="#行内代码">行内代码</a></li>
             <li><a href="#缩进代码">缩进代码</a></li>
             <li><a href="#围栏代码块">围栏代码块</a></li>
-            <li><a href="#highlight-代码块-a-idhighlight-1a">highlight 代码块 <a id="highlight-1"></a></a></li>
+            <li><a href="#highlight-代码块">highlight 代码块</a></li>
             <li><a href="#语法高亮">语法高亮</a></li>
           </ol>
         </li>
@@ -124,7 +124,7 @@
           <ol>
             <li><a href="#基本链接">基本链接</a></li>
             <li><a href="#添加一个标题">添加一个标题</a></li>
-            <li><a href="#定位标记">定位标记</a></li>
+            <li><a href="#定位标记-a-idxxxa">定位标记 <a id="xxx"></a></a></li>
           </ol>
         </li>
         <li><a href="#脚注">脚注</a></li>
@@ -384,7 +384,8 @@ line 3 of code
 <pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">Sample text here...
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h4 id="highlight-代码块-a-idhighlight-1a">highlight 代码块 <a id="highlight-1"></a></h4>
+</div><p><a id="highlight-1"></a></p>
+<h4 id="highlight-代码块">highlight 代码块</h4>
 <p>使用<code>highlight</code>来生成代码块，使用以及行号参数配置详见<a href="https://gohugo.io/content-management/syntax-highlighting/" target="_blank" rel="noopener noreffer ">syntax-highlighting</a>.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -565,7 +566,7 @@ line 3 of code
 </div>
 </div><p>悬浮会有提示，显示效果：</p>
 <p><a href="https://github.com/upstage/" title="这是提示">Upstage</a></p>
-<h4 id="定位标记">定位标记</h4>
+<h4 id="定位标记-a-idxxxa">定位标记 <a id="xxx"></a></h4>
 <p>定位标记使你可以跳至同一页面上的指定锚点. 例如, 每个章节:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -581,30 +582,50 @@ line 3 of code
 </span></span><span class="line"><span class="cl">  <span class="k">*</span> [<span class="nt">Chapter 3</span>](<span class="na">#chapter-3</span>)
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>#</code>后面跟的是id号，即回跳转到如下指定id的部分，需要在章节名后面加上<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code></p>
+</div><p><code>#</code>后面跟的是id号，即回跳转到如下指定id的部分，建议将<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>放在标题往上单独一行</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## Chapter 1 &lt;a id=&#34;chapter-1&#34;&gt;&lt;/a&gt;
-</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;chapter-1&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="gu">## Chapter 2 &lt;a id=&#34;chapter-2&#34;&gt;&lt;/a&gt;
+</span></span><span class="line"><span class="cl"><span class="gu">## Chapter 1 
 </span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;chapter-2&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="gu">## Chapter 3 &lt;a id=&#34;chapter-3&#34;&gt;&lt;/a&gt;
+</span></span><span class="line"><span class="cl"><span class="gu">## Chapter 2 
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;chapter-3&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## Chapter 3 
 </span></span></span><span class="line"><span class="cl"><span class="gu"></span>Content for chapter one.
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="脚注">脚注</h3>
+</div><p><strong>注意 注意</strong>，不要直接在章节名后面加<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>，LoveIt主题官方文章说可以放一行，但是这样会出现两个问题：</p>
+<ol>
+<li>会更改标题的id</li>
+</ol>
+<p>例如标题<code>#### 定位标记</code>，它自动生成的id是<code>id=&quot;定位标记&quot;</code>,这个id主要用于目录索引</p>
+<p>如果把<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>放在和标题一行，即<code>#### 定位标记 &lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>，会导致它自动生成的id变成<code>id=&quot;定位标记-a-idxxxa&quot;</code>,虽然目录索引会保持一致，不会影响目录跳转，但是如果自己去索引的话，可能不会注意到id产生了变化</p>
+<ol start="2">
+<li>会导致a标签重复生成</li>
+</ol>
+<p>在目录索引处会生成一个<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>标签，然后在文章目录下面又会生成一个<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>标签，会导致定位标记无法跳转</p>
+<p>作为验证，这里我在标题<code>#### 定位标记</code>同一行后面添加了一个<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>，可以查看当前页面的源代码，里面有两个一模一样的<code>&lt;a id=&quot;xxx&quot;&gt;&lt;/a&gt;</code>，下面这个指向<code>id=&quot;xxx&quot;</code>的定位标记将无法跳转</p>
+<p><a href="#xxx" rel="">xxx定位标记无法跳转</a></p>
+<h3 id="脚注">脚注</h3>
 <p>脚注使你可以添加注释和参考, 而不会使文档正文混乱. 当你创建脚注时, 会在添加脚注引用的位置出现带有链接的上标编号. 读者可以单击链接以跳至页面底部的脚注内容.</p>
 <p>要创建脚注引用, 请在方括号中添加插入符号和标识符 ([<code>^1</code>]). 标识符可以是数字或单词, 但不能包含空格或制表符. 标识符仅将脚注引用与脚注本身相关联 - 在脚注输出中, 脚注按顺序编号.</p>
 <p>在中括号内使用插入符号和数字以及用冒号和文本来添加脚注内容 (<code>[^1]：这是一段脚注</code>). 你不一定要在文档末尾添加脚注. 可以将它们放在除列表, 引用和表格等元素之外的任何位置.</p>
