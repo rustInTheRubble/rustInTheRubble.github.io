@@ -3,7 +3,15 @@
         <title>V2X - 分类 - 我的博客</title>
         <link>https://rustintherubble.github.io/categories/v2x/</link>
         <description>V2X - 分类 - 我的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/v2x/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 16:03:26 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/v2x/" rel="self" type="application/rss+xml" /><item>
+    <title>ASN.1 PER 编码规则</title>
+    <link>https://rustintherubble.github.io/posts/2022/11/20/uper/</link>
+    <pubDate>Sun, 20 Nov 2022 16:03:26 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/11/20/uper/</guid>
+    <description><![CDATA[ASN．1定义的编码规则也有很多种，这些编码规则都风格迥异。但目前用得最多、影响也最大的是BER （ Basic Encoding Rules ）和 PER （ Packed Encoding Rules） 这两种方案。]]></description>
+</item>
+<item>
     <title>《YD_T 3594-2019 基于LTE的车联网通信安全技术要求》阅读笔记——PC5 </title>
     <link>https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/</link>
     <pubDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</pubDate>

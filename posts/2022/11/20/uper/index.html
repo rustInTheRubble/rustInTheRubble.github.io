@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>ASN.1 PER 编码规则 - 我的博客</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="ASN.1 PER 编码规则" />
+<meta property="og:description" content="ASN．1定义的编码规则也有很多种，这些编码规则都风格迥异。但目前用得最多、影响也最大的是BER （ Basic Encoding Rules ）和 PER （ Packed Encoding Rules） 这两种方案。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rustintherubble.github.io/posts/2022/11/20/uper/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-20T16:03:26+08:00" />
+<meta property="article:modified_time" content="2022-11-20T16:03:26+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="ASN.1 PER 编码规则"/>
+<meta name="twitter:description" content="ASN．1定义的编码规则也有很多种，这些编码规则都风格迥异。但目前用得最多、影响也最大的是BER （ Basic Encoding Rules ）和 PER （ Packed Encoding Rules） 这两种方案。"/>
+<meta name="application-name" content="我的博客">
+<meta name="apple-mobile-web-app-title" content="我的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2022/11/20/uper/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "ASN.1 PER 编码规则",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rustintherubble.github.io\/posts\/2022\/11\/20\/uper\/"
+        },"genre": "posts","keywords": "ASN.1, PER","wordcount":  1729 ,
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2022\/11\/20\/uper\/","datePublished": "2022-11-20T16:03:26+08:00","dateModified": "2022-11-20T16:03:26+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "渤海深处"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的博客">我的博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/"> 首页 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的博客">我的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/" title="">首页</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">ASN.1 PER 编码规则</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/v2x/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>V2X</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-20">2022-11-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1729 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 4 分钟&nbsp;
+
+                <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span>
+                  </span>次
+            </div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ol>
+    <li><a href="#ber">BER</a></li>
+    <li><a href="#per">PER</a>
+      <ol>
+        <li><a href="#uper">UPER</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav></div>
+            </div><div class="content" id="content"><p>ASN．1定义的编码规则也有很多种，这些编码规则都风格迥异。但目前用得最多、影响也最大的是BER （ Basic Encoding Rules ）和 PER （ Packed Encoding Rules） 这两种方案。</p>
+<h2 id="ber">BER</h2>
+<p>BER 编码规定：每个传输的数据值，不管是简单类型还是复合类型，都由 TLC 三个字段构成。 其中：T 是标识类型的八位数组(Tag)，L是数据字段的长度(Length)，以字节为单位。C 即数据字段的内容(Content)。</p>
+<p>TLC 结构是可以<strong>嵌套</strong>的，在C字段中又可以包含其他数据的 TLC 字段。</p>
+<h2 id="per">PER</h2>
+<p>由于 BER 的编码包含了过多的冗余信息，使得网络传输负荷过大。 ITU－T 在90年代初又制定了
+PER 编码。PER编码规则可以分为基本的（Basic）和规范的（Canonical）两类，每一类又可以分为对齐（aligned variant）和不对齐（unaligned variant）两种。其中，
+unaligned variant 的编码都是按比特来的，各个数据项的编码之间没有填充的比特，因此它比 aligned variant 更为精简。</p>
+<hr>
+<p><strong>PER 的使用必须有一个前提，那就是网络通信的收发双方都清楚正在使用的用 ASN．1句法描述的数据结构，当然这只需要收发双方都遵循统一的通信协议即可。</strong></p>
+<hr>
+<p>PER 的编码思路与 BER 有着很大的不同。 它的每种数据类型的编码结果都有［P］(导言 optional Preamble) ，［L］(长度 optional Length)，［C］(内容 optional Value)三个字段。 与 BER 不同的是 PLC 三个字段都是可选的，而且这三个字段可以以比特为单位，不一定都用字节。</p>
+<p>同 BER 一样，PER 的编码具体实现也是<strong>嵌套</strong>进行的</p>
+<hr>
+<p>与 BER 编码比较，PER 编码的精简主要来自于以下三方面：</p>
+<ol>
+<li>没有 T 字段：</li>
+</ol>
+<p>T 字段在编码中似乎是一个重要部分，但实际上通常是不必要的。 由于网络的通信双方都遵循统一的网络协议，因此它们可以从数据结构中推导出特定元素的类型和标识，就可以在编码中省略类型标识符。</p>
+<ol start="2">
+<li>长度段的编码更加精简</li>
+</ol>
+<p>BER 的长度段的编码都是字节，而且 BER 长度的编码不考虑具体条件；然而 PER 的长度字段根
+据编码类型的不同，有不同的单位。这些单位可以是比特、字节、元素、字符等。 这也是 PER 利用数据结构已知的优势来减少编码量的又一方式；而且根据具体的条件限制，PER 的长度段还可以大幅度削
+减，譬如当数据类型的长度固定时，该数据项的长度甚至可以不编码。 如下表中的 <code>IA5String(SIZE(4)) ：：＝“BCDA”</code>，由于长度固定为4，PER 编码就只对 <code>BCDA</code> 进行编码，共4字节。 而 BER 则还要包括 T 和 L 字段，共6字节。PER 长度段的编码规则也要复杂得多，这方面的论述在 X．691中占据了相当大的篇幅。</p>
+<ol>
+<li>对数字类型的编码更加精简</li>
+</ol>
+<p>在对 Integer 等数字类型（ 包括 Integer 和一些类型的长度值编码的情况） 进行编码时，BER 采取的是直接对数值进行编码；而 PER 采取的是对数据的偏移值（ offset） 进行编码。所谓偏移值就是实际值
+减去下界的值。 如下表的 <code>Integer (123456789…123456792) ：：＝123456790，offset＝1</code>，PER 只需要对<code>1</code>进行编码，编码结果为“<code>01</code>”，占两个比特。 而PER 就要对<code>1234567690</code>进行编码，编码结果为包括 TLC 三个字段共需要6个字节。这样对于那些下界类型很大的整数，可以节省大量字节，且编码本身也非常简洁。</p>
+<p>下表是BER 与 PER 的编码长度比较</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">ASN.1编码类型</th>
+<th>BER Definite length</th>
+<th>PER Aligned variant</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Integer (123456789…123456792) ::=123456790</td>
+<td>6 octets</td>
+<td>2 bits</td>
+</tr>
+<tr>
+<td style="text-align:left">Integer (123456789…MAX) ::=123456790</td>
+<td>6 octets</td>
+<td>2 octets</td>
+</tr>
+<tr>
+<td style="text-align:left">Integer::=123456790</td>
+<td>6 octets</td>
+<td>5 octets</td>
+</tr>
+<tr>
+<td style="text-align:left">IA5String (SIZE (4) ^FROM (“ABCD”) ) ::=“BCDA”</td>
+<td>6 octets</td>
+<td>1 octet</td>
+</tr>
+<tr>
+<td style="text-align:left">IA5String (FROM (“ABCD”) ) ::=“BCDA”</td>
+<td>6 octets</td>
+<td>2 octets</td>
+</tr>
+<tr>
+<td style="text-align:left">IA5String (SIZE (4) ) ::=“BCDA”</td>
+<td>6 octets</td>
+<td>4 octets</td>
+</tr>
+<tr>
+<td style="text-align:left">IA5String::=“BCDA”</td>
+<td>6 octets</td>
+<td>5 octets</td>
+</tr>
+<tr>
+<td style="text-align:left">SEQUENCE OF BOOLEAN::=	{…共64项…}</td>
+<td>195 octets</td>
+<td>9 octets</td>
+</tr>
+<tr>
+<td style="text-align:left">SEQUENCE SIZE (64) OF BOOLEAN::= {…共64项…}</td>
+<td>195 octets</td>
+<td>8 octets</td>
+</tr>
+<tr>
+<td style="text-align:left">SEQUENCE OF INTEGER (0..65535) ::=	{…共64项…}</td>
+<td>195	octets</td>
+<td>129	octets</td>
+</tr>
+<tr>
+<td style="text-align:left">SEQUENCE{a INTEGER (0..7) , <br>b BOOLEAN,<br>c INTEGER (0..3) ,<br>d SEQUENCE{d1 BOOLEAN,<br>d2 BOOLEAN}}::={ a 5,<br>b TRUE,<br>c 1,<br>d {d1 TRUE,<br> d2 TRUE}}</td>
+<td>19 octets</td>
+<td>1 octets</td>
+</tr>
+</tbody>
+</table>
+<h3 id="uper">UPER</h3>
+<ul>
+<li>非对齐编码：按位被打包，它不会用位填充数据值以生成整数个八位字节。数据本质上是一个有序的比特流。</li>
+<li>对齐编码：在位上对值进行编码，但如果某些类型的数据结构编码的位不能被八整除，则会添加填充位，直到整数个八位字节对值进行编码，这意味着可能会有一些浪费的填充位。非对齐编码使用最少的位数，但可能会花费一些处理时间。数据本质上是一个有序字节流。</li>
+</ul>
+<hr>
+<p>参考文献：</p>
+<p>[1]	吕谦,黄本雄.ASN.1及其两种编码方式(BER和PER)的对比研究[J].数据通信,2001(03):18-21.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://rustintherubble.github.io/posts/2022/11/20/uper/" data-title="ASN.1 PER 编码规则" data-hashtags="ASN.1,PER"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://rustintherubble.github.io/posts/2022/11/20/uper/" data-hashtag="ASN.1"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://rustintherubble.github.io/posts/2022/11/20/uper/" data-title="ASN.1 PER 编码规则"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://rustintherubble.github.io/posts/2022/11/20/uper/" data-title="ASN.1 PER 编码规则"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://rustintherubble.github.io/posts/2022/11/20/uper/" data-title="ASN.1 PER 编码规则"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/asn.1/">ASN.1</a>,&nbsp;<a href="/tags/per/">PER</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2022/11/01/c-v2x_requirements_of_security/" class="prev" rel="prev" title="《YD_T 3594-2019 基于LTE的车联网通信安全技术要求》阅读笔记——PC5 "><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>《YD_T 3594-2019 基于LTE的车联网通信安全技术要求》阅读笔记——PC5 </a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">渤海深处</a></span>
+                <div >
+                    <i class="fa fa-user"></i>&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;|&nbsp;
+                    <i class="fa fa-eye"></i>&nbsp;<span id="busuanzi_value_site_pv"></span>
+                </div>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"gitalk":{"admin":["rustInTheRubble"],"clientID":"68458203ea232e8a6c8a","clientSecret":"c9fd1ba7687d190c51b209d6e54d10d314432ac3","id":"2022-11-20T16:03:26+08:00","owner":"rustInTheRubble","repo":"rustInTheRubble.github.io","title":"ASN.1 PER 编码规则"}}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

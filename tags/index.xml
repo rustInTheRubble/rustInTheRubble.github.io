@@ -3,20 +3,28 @@
         <title>Tags - 标签 - 我的博客</title>
         <link>https://rustintherubble.github.io/tags/</link>
         <description>Tags - 标签 - 我的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 16:03:26 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>ASN.1</title>
+    <link>https://rustintherubble.github.io/tags/asn.1/</link>
+    <pubDate>Sun, 20 Nov 2022 16:03:26 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/tags/asn.1/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>PER</title>
+    <link>https://rustintherubble.github.io/tags/per/</link>
+    <pubDate>Sun, 20 Nov 2022 16:03:26 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/tags/per/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>协议标准</title>
     <link>https://rustintherubble.github.io/tags/%E5%8D%8F%E8%AE%AE%E6%A0%87%E5%87%86/</link>
     <pubDate>Wed, 02 Nov 2022 17:47:15 &#43;0800</pubDate>
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/tags/%E5%8D%8F%E8%AE%AE%E6%A0%87%E5%87%86/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>ASN.1</title>
-    <link>https://rustintherubble.github.io/tags/asn.1/</link>
-    <pubDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/tags/asn.1/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
