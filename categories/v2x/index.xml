@@ -3,7 +3,15 @@
         <title>V2X - 分类 - 我的博客</title>
         <link>https://rustintherubble.github.io/categories/v2x/</link>
         <description>V2X - 分类 - 我的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Nov 2022 16:03:26 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/v2x/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 30 Nov 2022 15:36:24 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/v2x/" rel="self" type="application/rss+xml" /><item>
+    <title>asn1c库编码函数返回的encoded，存在一个小问题</title>
+    <link>https://rustintherubble.github.io/posts/2022/11/30/asn1c/</link>
+    <pubDate>Wed, 30 Nov 2022 15:36:24 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2022/11/30/asn1c/</guid>
+    <description><![CDATA[ASN.1编码我用的asn1c库，在使用UPER编码的时候，返回值有个需要注意的地方 uper编码可以使用 asn_encode_to_buffer uper_encode_to_buffer uper编码源代码 asn_enc]]></description>
+</item>
+<item>
     <title>ASN.1 PER 编码规则</title>
     <link>https://rustintherubble.github.io/posts/2022/11/20/uper/</link>
     <pubDate>Sun, 20 Nov 2022 16:03:26 &#43;0800</pubDate>

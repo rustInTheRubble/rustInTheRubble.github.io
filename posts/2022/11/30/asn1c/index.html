@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>asn1c库编码函数返回的encoded，存在一个小问题 - 我的博客</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="asn1c库编码函数返回的encoded，存在一个小问题" />
+<meta property="og:description" content="ASN.1编码我用的asn1c库，在使用UPER编码的时候，返回值有个需要注意的地方 uper编码可以使用 asn_encode_to_buffer uper_encode_to_buffer uper编码源代码 asn_enc" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-11-30T15:36:24+08:00" />
+<meta property="article:modified_time" content="2022-11-30T15:36:24+08:00" /><meta property="og:site_name" content="My cool site" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="asn1c库编码函数返回的encoded，存在一个小问题"/>
+<meta name="twitter:description" content="ASN.1编码我用的asn1c库，在使用UPER编码的时候，返回值有个需要注意的地方 uper编码可以使用 asn_encode_to_buffer uper_encode_to_buffer uper编码源代码 asn_enc"/>
+<meta name="application-name" content="我的博客">
+<meta name="apple-mobile-web-app-title" content="我的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2022/11/27/adb_for_arm/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "asn1c库编码函数返回的encoded，存在一个小问题",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rustintherubble.github.io\/posts\/2022\/11\/30\/asn1c\/"
+        },"genre": "posts","keywords": "ASN.1","wordcount":  1018 ,
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2022\/11\/30\/asn1c\/","datePublished": "2022-11-30T15:36:24+08:00","dateModified": "2022-11-30T15:36:24+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "渤海深处"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="我的博客">我的博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/"> 首页 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="我的博客">我的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/" title="">首页</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">asn1c库编码函数返回的encoded，存在一个小问题</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/v2x/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>V2X</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2022-11-30">2022-11-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1018 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;
+
+                <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span>
+                  </span>次
+            </div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ol>
+    <li><a href="#uper编码源代码">uper编码源代码</a>
+      <ol>
+        <li><a href="#asn_encode_to_buffer函数">asn_encode_to_buffer函数</a></li>
+        <li><a href="#uper_encode_to_buffer函数">uper_encode_to_buffer函数</a></li>
+        <li><a href="#两个函数的返回值类型">两个函数的返回值类型</a></li>
+      </ol>
+    </li>
+    <li><a href="#uper编码返回值问题">uper编码返回值问题</a>
+      <ol>
+        <li><a href="#源代码分析">源代码分析</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav></div>
+            </div><div class="content" id="content"><p>ASN.1编码我用的<a href="https://github.com/vlm/asn1c" target="_blank" rel="noopener noreffer ">asn1c库</a>，在使用UPER编码的时候，返回值有个需要注意的地方</p>
+<p>uper编码可以使用</p>
+<ul>
+<li><code>asn_encode_to_buffer</code></li>
+<li><code>uper_encode_to_buffer</code></li>
+</ul>
+<h2 id="uper编码源代码">uper编码源代码</h2>
+<h3 id="asn_encode_to_buffer函数">asn_encode_to_buffer函数</h3>
+<p>函数定义如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">asn_enc_rval_t</span>
+</span></span><span class="line"><span class="cl"><span class="nf">asn_encode_to_buffer</span><span class="p">(</span><span class="k">const</span> <span class="n">asn_codec_ctx_t</span> <span class="o">*</span><span class="n">opt_codec_ctx</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="k">enum</span> <span class="n">asn_transfer_syntax</span> <span class="n">syntax</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="k">const</span> <span class="n">asn_TYPE_descriptor_t</span> <span class="o">*</span><span class="n">td</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">sptr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="kt">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">buffer_size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">struct</span> <span class="n">overrun_encoder_key</span> <span class="n">buf_key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">asn_enc_rval_t</span> <span class="n">er</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">buffer_size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">buffer</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">errno</span> <span class="o">=</span> <span class="n">EINVAL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ASN__ENCODE_FAILED</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">buf_key</span><span class="p">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">buf_key</span><span class="p">.</span><span class="n">buffer_size</span> <span class="o">=</span> <span class="n">buffer_size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">buf_key</span><span class="p">.</span><span class="n">computed_size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">er</span> <span class="o">=</span> <span class="n">asn_encode_internal</span><span class="p">(</span><span class="n">opt_codec_ctx</span><span class="p">,</span> <span class="n">syntax</span><span class="p">,</span> <span class="n">td</span><span class="p">,</span> <span class="n">sptr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">overrun_encoder_cb</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">buf_key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">size_t</span><span class="p">)</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">!=</span> <span class="n">buf_key</span><span class="p">.</span><span class="n">computed_size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ASN_DEBUG</span><span class="p">(</span><span class="s">&#34;asn_encode() returned %&#34;</span> <span class="n">ASN_PRI_SSIZE</span>
+</span></span><span class="line"><span class="cl">                  <span class="s">&#34; yet produced %&#34;</span> <span class="n">ASN_PRI_SIZE</span> <span class="s">&#34; bytes&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">er</span><span class="p">.</span><span class="n">encoded</span><span class="p">,</span> <span class="n">buf_key</span><span class="p">.</span><span class="n">computed_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">assert</span><span class="p">(</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="p">(</span><span class="n">size_t</span><span class="p">)</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">==</span> <span class="n">buf_key</span><span class="p">.</span><span class="n">computed_size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">er</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="uper_encode_to_buffer函数">uper_encode_to_buffer函数</h3>
+<p>函数定义如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">asn_enc_rval_t</span>
+</span></span><span class="line"><span class="cl"><span class="nf">uper_encode_to_buffer</span><span class="p">(</span><span class="k">const</span> <span class="n">asn_TYPE_descriptor_t</span> <span class="o">*</span><span class="n">td</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="k">const</span> <span class="n">asn_per_constraints_t</span> <span class="o">*</span><span class="n">constraints</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">sptr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">buffer_size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">enc_to_buf_arg</span> <span class="n">key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">key</span><span class="p">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">key</span><span class="p">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">buffer_size</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">td</span><span class="p">)</span> <span class="n">ASN_DEBUG</span><span class="p">(</span><span class="s">&#34;Encoding </span><span class="se">\&#34;</span><span class="s">%s</span><span class="se">\&#34;</span><span class="s"> using UNALIGNED PER&#34;</span><span class="p">,</span> <span class="n">td</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">uper_encode</span><span class="p">(</span><span class="n">td</span><span class="p">,</span> <span class="n">constraints</span><span class="p">,</span> <span class="n">sptr</span><span class="p">,</span> <span class="n">encode_to_buffer_cb</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="两个函数的返回值类型">两个函数的返回值类型</h3>
+<p>两个函数编码返回的都是<code>asn_enc_rval_t</code>类型的结构体。</p>
+<p>类型定义如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm"> * Type of the return value of the encoding functions (der_encode, xer_encode).
+</span></span></span><span class="line"><span class="cl"><span class="cm"> */</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">asn_enc_rval_s</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * Number of bytes encoded.
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * -1 indicates failure to encode the structure.
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * In this case, the members below this one are meaningful.
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span>
+</span></span><span class="line"><span class="cl">	<span class="n">ssize_t</span> <span class="n">encoded</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 * Members meaningful when (encoded == -1), for post mortem analysis.
+</span></span></span><span class="line"><span class="cl"><span class="cm">	 */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="cm">/* Type which cannot be encoded */</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="k">struct</span> <span class="n">asn_TYPE_descriptor_s</span> <span class="o">*</span><span class="n">failed_type</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="cm">/* Pointer to the structure of that type */</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">structure_ptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">asn_enc_rval_t</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>该结构体包含3个成员【<strong>编码的字节数</strong>、无法编码的类型描述指针、指向该类型结构的指针】。</p>
+<h2 id="uper编码返回值问题">uper编码返回值问题</h2>
+<p>按理说选择了同样的编码方式，返回的编码字节数应该一致（即<code>encoded</code>值相同），但我发现对于同一个测试消息帧</p>
+<ol>
+<li>
+<p><code>ec = asn_encode_to_buffer(0, ATS_UNALIGNED_CANONICAL_PER, &amp;asn_DEF_MessageFrame, msgFrame, buf, sizeof(buf));</code></p>
+</li>
+<li>
+<p><code>ec = uper_encode_to_buffer(&amp;asn_DEF_MessageFrame, 0, msgFrame, buf, sizeof(buf));</code></p>
+</li>
+</ol>
+<p>第一个函数返回ec.encoded=37，第二个返回ec.encoded=296。</p>
+<h3 id="源代码分析">源代码分析</h3>
+<p>在<code>uper_encode_to_buffer</code>中调用了函数<code>uper_encode</code>,其中<code>encoded</code>计算的是<code>bits</code>(第6行)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">size_t</span> <span class="n">bits_to_flush</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bits_to_flush</span> <span class="o">=</span> <span class="p">((</span><span class="n">po</span><span class="p">.</span><span class="n">buffer</span> <span class="o">-</span> <span class="n">po</span><span class="p">.</span><span class="n">tmpspace</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">po</span><span class="p">.</span><span class="n">nboff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/* Set number of bits encoded to a firm value */</span>
+</span></span><span class="line"><span class="cl"><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">=</span> <span class="p">(</span><span class="n">po</span><span class="p">.</span><span class="n">flushed_bytes</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">bits_to_flush</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在<code>asn_encode_to_buffer</code>中调用了函数<code>asn_encode_internal</code>，其中<code>encoded</code>由<code>bits</code>转换成了<code>bytes</code>(第24行)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">case</span> <span class="nl">ATS_UNALIGNED_BASIC_PER</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* CANONICAL-UPER is a superset of BASIC-UPER. */</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Fall through. */</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="nl">ATS_UNALIGNED_CANONICAL_PER</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="n">td</span><span class="o">-&gt;</span><span class="n">op</span><span class="o">-&gt;</span><span class="n">uper_encoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">er</span> <span class="o">=</span> <span class="n">uper_encode</span><span class="p">(</span><span class="n">td</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">sptr</span><span class="p">,</span> <span class="n">callback</span><span class="p">,</span> <span class="n">callback_key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span><span class="p">(</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">er</span><span class="p">.</span><span class="n">failed_type</span> <span class="o">&amp;&amp;</span> <span class="n">er</span><span class="p">.</span><span class="n">failed_type</span><span class="o">-&gt;</span><span class="n">op</span><span class="o">-&gt;</span><span class="n">uper_encoder</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">errno</span> <span class="o">=</span> <span class="n">EBADF</span><span class="p">;</span>  <span class="cm">/* Structure has incorrect form. */</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">errno</span> <span class="o">=</span> <span class="n">ENOENT</span><span class="p">;</span> <span class="cm">/* UPER is not defined for this type. */</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ASN_DEBUG</span><span class="p">(</span><span class="s">&#34;Complete encoded in %ld bits&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">long</span><span class="p">)</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span><span class="p">(</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="cm">/* Enforce &#34;Complete Encoding&#34; of X.691 #11.1 */</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span><span class="p">(</span><span class="n">callback</span><span class="p">(</span><span class="s">&#34;</span><span class="se">\0</span><span class="s">&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">callback_key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">errno</span> <span class="o">=</span> <span class="n">EBADF</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ASN__ENCODE_FAILED</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span> <span class="cm">/* Exactly 8 zero bits is added. */</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/* Convert bits into bytes */</span>
+</span></span><span class="line"><span class="cl">            <span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">=</span> <span class="p">(</span><span class="n">er</span><span class="p">.</span><span class="n">encoded</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>分析源代码发现<code>uper_encode_to_buffer</code>返回的其实是编码的比特数，而不是字节数。在<code>asn_encode_to_buffer</code>中则进行了字节数转换。</p>
+<p>也就是(296+7)&raquo;3=26</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2022-11-30</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" data-title="asn1c库编码函数返回的encoded，存在一个小问题" data-hashtags="ASN.1"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" data-hashtag="ASN.1"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" data-title="asn1c库编码函数返回的encoded，存在一个小问题"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" data-title="asn1c库编码函数返回的encoded，存在一个小问题"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" data-title="asn1c库编码函数返回的encoded，存在一个小问题"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/asn.1/">ASN.1</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2022/11/27/adb_for_arm/" class="prev" rel="prev" title="移植adb到iMX6开发板(arm)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>移植adb到iMX6开发板(arm)</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">渤海深处</a></span>
+                <div >
+                    <i class="fa fa-user"></i>&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;|&nbsp;
+                    <i class="fa fa-eye"></i>&nbsp;<span id="busuanzi_value_site_pv"></span>
+                </div>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"gitalk":{"admin":["rustInTheRubble"],"clientID":"68458203ea232e8a6c8a","clientSecret":"c9fd1ba7687d190c51b209d6e54d10d314432ac3","id":"2022-11-30T15:36:24+08:00","owner":"rustInTheRubble","repo":"rustInTheRubble.github.io","title":"asn1c库编码函数返回的encoded，存在一个小问题"}}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
