@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Markdown - 分类 - 我的博客</title>
+        <title>Markdown - 分类 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/categories/markdown/</link>
-        <description>Markdown - 分类 - 我的博客</description>
+        <description>Markdown - 分类 - 渤海深处的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/markdown/" rel="self" type="application/rss+xml" /><item>
     <title>文章撰写 Markdown Shortcode 语法相关</title>
     <link>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</link>

@@ -1,8 +1,8 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Linux - 分类 - 我的博客</title>
+        <title>Linux - 分类 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/categories/linux/</link>
-        <description>Linux - 分类 - 我的博客</description>
+        <description>Linux - 分类 - 渤海深处的博客</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 27 Nov 2022 15:30:30 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/linux/" rel="self" type="application/rss+xml" /><item>
     <title>移植adb到iMX6开发板(arm)</title>
     <link>https://rustintherubble.github.io/posts/2022/11/27/adb_for_arm/</link>
