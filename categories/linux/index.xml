@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Linux - Category - 渤海深处的博客</title>
+        <title>Linux - 分类 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/categories/linux/</link>
-        <description>Linux - Category - 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/linux/" rel="self" type="application/rss+xml" /><item>
+        <description>Linux - 分类 - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/linux/" rel="self" type="application/rss+xml" /><item>
     <title>openssl ECDSA 库消息签名和验签</title>
     <link>https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/</link>
     <pubDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</pubDate>

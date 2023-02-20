@@ -3,7 +3,7 @@
         <title>渤海深处的博客</title>
         <link>https://rustintherubble.github.io/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</lastBuildDate>
             <atom:link href="https://rustintherubble.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>openssl ECDSA 库消息签名和验签</title>
