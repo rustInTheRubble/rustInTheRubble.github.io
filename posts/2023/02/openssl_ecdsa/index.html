@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>openssl ECDSA 库消息签名和验签 - 渤海深处的博客</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="openssl ECDSA 库消息签名和验签" />
+<meta property="og:description" content="密钥生成 椭圆曲线参数选择 使用以下命令列出所有支持的曲线： openssl ecparam -list_curves 若支持目标曲线，就可以在openssl/include/openssl/obj" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-02-20T12:40:34+08:00" />
+<meta property="article:modified_time" content="2023-02-20T14:22:11+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="openssl ECDSA 库消息签名和验签"/>
+<meta name="twitter:description" content="密钥生成 椭圆曲线参数选择 使用以下命令列出所有支持的曲线： openssl ecparam -list_curves 若支持目标曲线，就可以在openssl/include/openssl/obj"/>
+<meta name="application-name" content="渤海深处的博客">
+<meta name="apple-mobile-web-app-title" content="渤海深处的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2022/11/30/asn1c/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "openssl ECDSA 库消息签名和验签",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rustintherubble.github.io\/posts\/2023\/02\/openssl_ecdsa\/"
+        },"genre": "posts","keywords": "数字签名, openssl","wordcount":  1208 ,
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/02\/openssl_ecdsa\/","datePublished": "2023-02-20T12:40:34+08:00","dateModified": "2023-02-20T14:22:11+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "渤海深处"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="渤海深处的博客">渤海深处的博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/"> 首页 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/posts/2023/02/openssl_ecdsa/" selected>简体中文</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="渤海深处的博客">渤海深处的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/" title="">首页</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/posts/2023/02/openssl_ecdsa/" selected>简体中文</option></select>
+                </a></div>
+    </div>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">openssl ECDSA 库消息签名和验签</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">included in <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-02-20">2023-02-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1208 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;
+
+                <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span>
+                  </span>次
+            </div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ol>
+    <li><a href="#密钥生成">密钥生成</a>
+      <ol>
+        <li><a href="#椭圆曲线参数选择">椭圆曲线参数选择</a></li>
+        <li><a href="#命令行生成与读取">命令行生成与读取</a></li>
+        <li><a href="#代码生成">代码生成</a>
+          <ol>
+            <li><a href="#生成密钥对">生成密钥对</a></li>
+            <li><a href="#方法说明">方法说明</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#读取密钥">读取密钥</a>
+      <ol>
+        <li><a href="#pem文件读取">pem文件读取</a></li>
+        <li><a href="#字符串读取">字符串读取</a></li>
+        <li><a href="#方法说明-1">方法说明</a></li>
+      </ol>
+    </li>
+    <li><a href="#消息签名">消息签名</a>
+      <ol>
+        <li><a href="#签名方法">签名方法</a></li>
+        <li><a href="#方法说明-2">方法说明</a></li>
+      </ol>
+    </li>
+    <li><a href="#消息验签">消息验签</a>
+      <ol>
+        <li><a href="#验签方法">验签方法</a></li>
+        <li><a href="#方法说明-3">方法说明</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="密钥生成">密钥生成</h2>
+<h3 id="椭圆曲线参数选择">椭圆曲线参数选择</h3>
+<p>使用以下命令列出所有支持的曲线：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl ecparam -list_curves
+</span></span></code></pre></div><p>若支持目标曲线，就可以在<a href="https://github.com/openssl/openssl/blob/4e6647506331fc3b3ef5b23e5dbe188279ddd575/include/openssl/obj_mac.h" target="_blank" rel="noopener noreffer ">openssl/include/openssl/obj_mac.h</a>文件中找到相应的 NID</p>
+<h3 id="命令行生成与读取">命令行生成与读取</h3>
+<p>这里椭圆曲线参数由name指定，如NIST P-256(secp256r1,在 OpenSSL 称为prime256v1)</p>
+<p>生成秘钥</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl ecparam -genkey -name prime256v1 -param_enc explicit -outform pem -out ec_prikey.pem
+</span></span></code></pre></div><p>获取公钥</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">openssl ec -in ec_prikey.pem -pubout -out ec_pubkey.pem
+</span></span></code></pre></div><h3 id="代码生成">代码生成</h3>
+<h4 id="生成密钥对">生成密钥对</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;openssl/ec.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;openssl/obj_mac.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">EC_KEY</span>         <span class="o">*</span><span class="n">key_pair</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span>             <span class="n">ret_error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">key_pair</span> <span class="o">=</span> <span class="nf">EC_KEY_new_by_curve_name</span><span class="p">(</span><span class="n">NID_X9_62_prime256v1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret_error</span> <span class="o">=</span> <span class="nf">EC_KEY_generate_key</span><span class="p">(</span><span class="n">key_pair</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="方法说明">方法说明</h4>
+<p><code>EC_KEY</code>结构体内容如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">struct</span> <span class="n">ec_key_st</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">version</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EC_GROUP</span>  <span class="o">*</span><span class="n">group</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">EC_POINT</span>  <span class="o">*</span><span class="n">pub_key</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">BIGNUM</span>    <span class="o">*</span><span class="n">priv_key</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">enc_flag</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">point_conversion_form_t</span> <span class="n">conv_form</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span>     <span class="n">references</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> 	<span class="n">flags</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EC_EXTRA_DATA</span> <span class="o">*</span><span class="n">method_data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="cm">/* EC_KEY */</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>函数方法说明</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">EC_KEY</span> <span class="o">*</span><span class="nf">EC_KEY_new_by_curve_name</span><span class="p">(</span><span class="kt">int</span> <span class="n">nid</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>根据相关曲线的 <code>nid</code> 来构造新的 <code>EC_KEY</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">EC_KEY_generate_key</span><span class="p">(</span><span class="n">EC_KEY</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>EC_KEY_generate_key</code> 为 <code>EC_KEY</code> 对象生成新的公钥和私钥。在调用此函数之前， <code>EC_KEY</code> 必须具有与之关联的 <code>EC_GROUP</code> 对象。私钥是一个随机整数（0 &lt; priv_key &lt; order，其中order是EC_GROUP对象的顺序）。公钥是曲线上的 <code>EC_POINT</code> ，通过将曲线的生成器乘以私钥计算得出。</p>
+<h2 id="读取密钥">读取密钥</h2>
+<h3 id="pem文件读取">pem文件读取</h3>
+<p>一种方法是直接读取为EC_KEY</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;openssl/pem.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;openssl/bn.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">prikey_path</span><span class="o">=</span><span class="s">&#34;ec_prikey.pem&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">pubkey_path</span><span class="o">=</span><span class="s">&#34;ec_pubkey.pem&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EVP_PKEY</span> <span class="o">*</span><span class="n">pubKey</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EC_KEY</span> <span class="o">*</span><span class="n">ec_key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">BIO</span>    <span class="o">*</span><span class="n">bio_key_file</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* pri key */</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*get key from pem file*/</span>
+</span></span><span class="line"><span class="cl"><span class="n">bio_key_file</span> <span class="o">=</span> <span class="nf">BIO_new_file</span><span class="p">(</span><span class="n">prikey_path</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ec_key</span> <span class="o">=</span> <span class="nf">PEM_read_bio_ECPrivateKey</span><span class="p">(</span><span class="n">bio_key_file</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* pub key */</span>
+</span></span><span class="line"><span class="cl"><span class="n">bio_key_file</span> <span class="o">=</span> <span class="nf">BIO_new_file</span><span class="p">(</span><span class="n">pubkey_path</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ec_key</span> <span class="o">=</span> <span class="nf">PEM_read_bio_EC_PUBKEY</span><span class="p">(</span><span class="n">bio_key_file</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>另一种方法是先读取为EVP_PKEY再转换为EC_KEY</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;openssl/pem.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;openssl/bn.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">prikey_path</span><span class="o">=</span><span class="s">&#34;ec_prikey.pem&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">pubkey_path</span><span class="o">=</span><span class="s">&#34;ec_pubkey.pem&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">EVP_PKEY</span> <span class="o">*</span> <span class="n">pubKey</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EC_KEY</span> <span class="o">*</span> <span class="n">ec_key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">BIO</span>    <span class="o">*</span><span class="n">bio_key_file</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* get key from pem file */</span>
+</span></span><span class="line"><span class="cl"><span class="n">bio_key_file</span> <span class="o">=</span> <span class="nf">BIO_new_file</span><span class="p">(</span><span class="n">pubkey_path</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* get pub key */</span>
+</span></span><span class="line"><span class="cl"><span class="n">pubKey</span> <span class="o">=</span> <span class="nf">PEM_read_bio_PUBKEY</span><span class="p">(</span><span class="n">bio_key_file</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ec_key</span> <span class="o">=</span> <span class="nf">EVP_PKEY_get1_EC_KEY</span><span class="p">(</span><span class="n">pubKey</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字符串读取">字符串读取</h3>
+<p>仅BIO读取方式不同</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">str_in_pem</span> <span class="o">=</span> <span class="s">&#34;str&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">BIO</span>    <span class="o">*</span><span class="n">bio_key</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">EC_KEY</span> <span class="o">*</span><span class="n">ec_key</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">bio_key</span> <span class="o">=</span> <span class="nf">BIO_new_mem_buf</span><span class="p">(</span><span class="n">str_in_pem</span><span class="p">,</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">str_in_pem</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* for pri key */</span>
+</span></span><span class="line"><span class="cl"><span class="n">ec_key</span> <span class="o">=</span> <span class="nf">PEM_read_bio_ECPrivateKey</span><span class="p">(</span><span class="n">bio_key</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* for pub key */</span>
+</span></span><span class="line"><span class="cl"><span class="n">ec_key</span> <span class="o">=</span> <span class="nf">PEM_read_bio_EC_PUBKEY</span><span class="p">(</span><span class="n">bio_key</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法说明-1">方法说明</h3>
+<p>以 <code>PEM_read_bio_ECPrivateKey</code> 为例，在文档OpenSSL libraries里可能找不到这个方法，但是其实是能用的。获取EC_KEY有两种方式，要么接收返回值，要么在第二个参数传入key指针地址(若该指针已存在EC_KEY，则更新为现在读取到的EC_KEY，否则不做处理)。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">EC_KEY</span> <span class="o">*</span><span class="nf">PEM_read_bio_ECPrivateKey</span><span class="p">(</span><span class="n">BIO</span> <span class="o">*</span><span class="n">bp</span><span class="p">,</span> <span class="n">EC_KEY</span> <span class="o">**</span><span class="n">key</span><span class="p">,</span> <span class="n">pem_password_cb</span> <span class="o">*</span><span class="n">cb</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="kt">void</span> <span class="o">*</span><span class="n">u</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EVP_PKEY</span> <span class="o">*</span><span class="n">pktmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pktmp</span> <span class="o">=</span> <span class="nf">PEM_read_bio_PrivateKey</span><span class="p">(</span><span class="n">bp</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">cb</span><span class="p">,</span> <span class="n">u</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nf">pkey_get_eckey</span><span class="p">(</span><span class="n">pktmp</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="cm">/* will free pktmp */</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">EC_KEY</span> <span class="o">*</span><span class="nf">pkey_get_eckey</span><span class="p">(</span><span class="n">EVP_PKEY</span> <span class="o">*</span><span class="n">key</span><span class="p">,</span> <span class="n">EC_KEY</span> <span class="o">**</span><span class="n">eckey</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EC_KEY</span> <span class="o">*</span><span class="n">dtmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">key</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dtmp</span> <span class="o">=</span> <span class="nf">EVP_PKEY_get1_EC_KEY</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">EVP_PKEY_free</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">dtmp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">eckey</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">EC_KEY_free</span><span class="p">(</span><span class="o">*</span><span class="n">eckey</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">eckey</span> <span class="o">=</span> <span class="n">dtmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">dtmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="消息签名">消息签名</h2>
+<h3 id="签名方法">签名方法</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;openssl/ecdsa.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;openssl/sha.h&#34;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="kt">char</span>     <span class="o">*</span><span class="n">message</span> <span class="o">=</span> <span class="s">&#34;message to sign&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">char</span>   <span class="n">buffer_digest</span><span class="p">[</span><span class="n">SHA256_DIGEST_LENGTH</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="kt">uint8_t</span>        <span class="o">*</span><span class="n">digest</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">uint8_t</span>       <span class="o">*</span><span class="n">signature</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">uint32_t</span>        <span class="n">signature_len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span>             <span class="n">ret_error</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">signature_len</span> <span class="o">=</span> <span class="nf">ECDSA_size</span><span class="p">(</span><span class="n">key_pair</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">signature</span>     <span class="o">=</span> <span class="p">(</span><span class="kt">uint8_t</span> <span class="o">*</span><span class="p">)</span> <span class="nf">OPENSSL_malloc</span><span class="p">(</span><span class="n">signature_len</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">digest</span>        <span class="o">=</span> <span class="nf">SHA256</span><span class="p">((</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">message</span><span class="p">,</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">message</span><span class="p">),</span> <span class="n">buffer_digest</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">ret_error</span>     <span class="o">=</span> <span class="nf">ECDSA_sign</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span> <span class="o">*</span><span class="p">)</span><span class="n">digest</span><span class="p">,</span> <span class="n">SHA256_DIGEST_LENGTH</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">signature_len</span><span class="p">,</span> <span class="n">key_pair</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法说明-2">方法说明</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">ECDSA_sign</span><span class="p">(</span><span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">dgst</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dgstlen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">               <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sig</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">siglen</span><span class="p">,</span> <span class="n">EC_KEY</span> <span class="o">*</span><span class="n">eckey</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ECDSA_sign()</code>使用私有 EC 密钥 <code>eckey</code> 计算 <code>dgstlen</code> 字节哈希值 <code>dgst</code> 的数字签名。DER 编码的签名存储在 <code>sig</code> 中，其长度在 <code>siglen</code> 中返回。注意：<code>sig</code> 必须指向 <code>ECDSA_size(eckey)</code> 字节的内存。</p>
+<p>return: 成功时返回 1，错误时返回 0</p>
+<p><strong>这里siglen传入的是指针，在签名后长度可能会比传入之前的siglen短。</strong></p>
+<h2 id="消息验签">消息验签</h2>
+<h3 id="验签方法">验签方法</h3>
+<p>变量来自前面</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">verification</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">verification</span> <span class="o">=</span> <span class="nf">ECDSA_verify</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">digest</span><span class="p">,</span> <span class="n">SHA256_DIGEST_LENGTH</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">signature_len</span><span class="p">,</span> <span class="n">key_pair</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="方法说明-3">方法说明</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">ECDSA_verify</span><span class="p">(</span><span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">dgst</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dgstlen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sig</span><span class="p">,</span> <span class="kt">int</span> <span class="n">siglen</span><span class="p">,</span> <span class="n">EC_KEY</span> <span class="o">*</span><span class="n">eckey</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>ECDSA_verify()</code>使用公钥 <code>eckey</code> 验证长为 <code>siglen</code> 的签名 <code>sig</code> <code>是长为dgstlen</code> 的哈希值 <code>dgst</code> 的有效 ECDSA 签名。</p>
+<p>return: 有效签名返回 1，对无效签名返回 0，对错误返回 -1</p>
+<p><strong>这里siglen传入的不是指针</strong></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-02-20</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/" data-title="openssl ECDSA 库消息签名和验签" data-hashtags="数字签名,openssl"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/" data-hashtag="数字签名"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/" data-title="openssl ECDSA 库消息签名和验签"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/" data-title="openssl ECDSA 库消息签名和验签"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/" data-title="openssl ECDSA 库消息签名和验签"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/">数字签名</a>,&nbsp;<a href="/tags/openssl/">openssl</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2022/11/30/asn1c/" class="prev" rel="prev" title="asn1c库编码函数返回的encoded，存在一个小问题"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>asn1c库编码函数返回的encoded，存在一个小问题</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.108.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">渤海深处</a></span>
+                <div >
+                    <i class="fa fa-user"></i>&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;|&nbsp;
+                    <i class="fa fa-eye"></i>&nbsp;<span id="busuanzi_value_site_pv"></span>
+                </div>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"gitalk":{"admin":["rustInTheRubble"],"clientID":"68458203ea232e8a6c8a","clientSecret":"c9fd1ba7687d190c51b209d6e54d10d314432ac3","id":"2023-02-20T12:40:34+08:00","owner":"rustInTheRubble","repo":"rustInTheRubble.github.io","title":"openssl ECDSA 库消息签名和验签"}}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

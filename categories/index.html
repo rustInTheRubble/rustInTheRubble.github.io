@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>所有分类 - 渤海深处的博客</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Categories" />
+        <title>All Categories - 渤海深处的博客</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="Categories" />
 <meta property="og:description" content="This is my cool site" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://rustintherubble.github.io/categories/" /><meta property="og:site_name" content="My cool site" />
-
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Categories"/>
 <meta name="twitter:description" content="This is my cool site"/>
@@ -27,8 +26,11 @@
             <a href="/" title="渤海深处的博客">渤海深处的博客</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item active" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/"> 首页 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item active" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/"> 首页 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/categories/" selected>简体中文</option><option value="/zh-cn/categories/"></option></select>
                 </a></div>
         </div>
     </div>
@@ -42,14 +44,17 @@
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/" title="">首页</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/" title="">首页</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/categories/" selected>简体中文</option><option value="/zh-cn/categories/"></option></select>
+                </a></div>
     </div>
     
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 </header><main class="main">
-                <div class="container"><div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster">所有分类</h2><div class="categories-card"><div class="card-item">
+                <div class="container"><div class="page archive"><h2 class="single-title animate__animated animate__pulse animate__faster">All Categories</h2><div class="categories-card"><div class="card-item">
                         <div class="card-item-wrapper">
                             <h3 class="card-item-title">
                                 <a href="/categories/v2x/">
@@ -73,6 +78,8 @@
                                     <i class="far fa-folder fa-fw" aria-hidden="true"></i>&nbsp;Linux
                                 </a>
                             </h3><article class="archive-item">
+                                    <a href="/posts/2023/02/openssl_ecdsa/" class="archive-item-link">openssl ECDSA 库消息签名和验签</a>
+                                </article><article class="archive-item">
                                     <a href="/posts/2022/11/27/adb_for_arm/" class="archive-item-link">移植adb到iMX6开发板(arm)</a>
                                 </article><article class="archive-item">
                                     <a href="/posts/2022/10/linux_driver/" class="archive-item-link">为 i.MX 6 开发板配置 Linux 驱动</a>
@@ -115,8 +122,8 @@
                                 </article></div>
                     </div></div></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.101.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
-                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">渤海深处</a></span>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.108.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">渤海深处</a></span>
                 <div >
                     <i class="fa fa-user"></i>&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;|&nbsp;
                     <i class="fa fa-eye"></i>&nbsp;<span id="busuanzi_value_site_pv"></span>
@@ -125,10 +132,10 @@
         </div>
     </footer></div>
 
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

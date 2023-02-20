@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>driver - 分类 - 渤海深处的博客</title>
+        <title>driver - Category - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/categories/driver/</link>
-        <description>driver - 分类 - 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/driver/" rel="self" type="application/rss+xml" /><item>
+        <description>driver - Category - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/driver/" rel="self" type="application/rss+xml" /><item>
     <title>为 i.MX 6 开发板配置 Linux 驱动</title>
     <link>https://rustintherubble.github.io/posts/2022/10/linux_driver/</link>
     <pubDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</pubDate>

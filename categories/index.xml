@@ -1,22 +1,22 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Categories - 分类 - 渤海深处的博客</title>
+        <title>Categories - Category - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/categories/</link>
-        <description>Categories - 分类 - 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 30 Nov 2022 15:36:24 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+        <description>Categories - Category - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux</title>
+    <link>https://rustintherubble.github.io/categories/linux/</link>
+    <pubDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/categories/linux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>V2X</title>
     <link>https://rustintherubble.github.io/categories/v2x/</link>
     <pubDate>Wed, 30 Nov 2022 15:36:24 &#43;0800</pubDate>
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/categories/v2x/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Linux</title>
-    <link>https://rustintherubble.github.io/categories/linux/</link>
-    <pubDate>Sun, 27 Nov 2022 15:30:30 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/categories/linux/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>

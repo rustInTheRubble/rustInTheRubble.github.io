@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>梯子 - 标签 - 渤海深处的博客</title>
+        <title>梯子 - Tag - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/tags/%E6%A2%AF%E5%AD%90/</link>
-        <description>梯子 - 标签 - 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/%E6%A2%AF%E5%AD%90/" rel="self" type="application/rss+xml" /><item>
+        <description>梯子 - Tag - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/%E6%A2%AF%E5%AD%90/" rel="self" type="application/rss+xml" /><item>
     <title>使用主机VPN v2rayN为虚拟机ubuntu配置端口，实现虚拟机代理翻墙</title>
     <link>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</link>
     <pubDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</pubDate>

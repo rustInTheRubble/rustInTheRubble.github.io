@@ -1,0 +1,9 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>渤海深处的博客</title>
+        <link>https://rustintherubble.github.io/zh-cn/</link>
+        <description>This is my cool site</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language>
+            <atom:link href="https://rustintherubble.github.io/zh-cn/index.xml" rel="self" type="application/rss+xml" />
+        </channel>
+</rss>

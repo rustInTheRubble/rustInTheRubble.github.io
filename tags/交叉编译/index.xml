@@ -1,9 +1,9 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>交叉编译 - 标签 - 渤海深处的博客</title>
+        <title>交叉编译 - Tag - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/tags/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</link>
-        <description>交叉编译 - 标签 - 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 27 Nov 2022 15:30:30 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" rel="self" type="application/rss+xml" /><item>
+        <description>交叉编译 - Tag - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Sun, 27 Nov 2022 15:30:30 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/" rel="self" type="application/rss+xml" /><item>
     <title>移植adb到iMX6开发板(arm)</title>
     <link>https://rustintherubble.github.io/posts/2022/11/27/adb_for_arm/</link>
     <pubDate>Sun, 27 Nov 2022 15:30:30 &#43;0800</pubDate>

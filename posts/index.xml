@@ -1,9 +1,17 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>所有文章 - 渤海深处的博客</title>
+        <title>All Posts - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/posts/</link>
-        <description>所有文章 | 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 30 Nov 2022 15:36:24 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <description>All Posts | 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>openssl ECDSA 库消息签名和验签</title>
+    <link>https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/</link>
+    <pubDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/</guid>
+    <description><![CDATA[密钥生成 椭圆曲线参数选择 使用以下命令列出所有支持的曲线： openssl ecparam -list_curves 若支持目标曲线，就可以在openssl/include/openssl/obj]]></description>
+</item>
+<item>
     <title>asn1c库编码函数返回的encoded，存在一个小问题</title>
     <link>https://rustintherubble.github.io/posts/2022/11/30/asn1c/</link>
     <pubDate>Wed, 30 Nov 2022 15:36:24 &#43;0800</pubDate>

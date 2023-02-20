@@ -1,35 +1,16 @@
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    ><url>
-            <loc>https://rustintherubble.github.io/tags/asn.1/</loc><lastmod>2022-11-30T15:36:24&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/11/30/asn1c/</loc><lastmod>2022-11-30T15:36:24&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/categories/</loc><lastmod>2022-11-30T15:36:24&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/</loc><lastmod>2022-11-30T15:36:24&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/</loc><lastmod>2022-11-30T15:36:24&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/categories/v2x/</loc><lastmod>2022-11-30T15:36:24&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/</loc><lastmod>2022-11-30T15:36:24&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/categories/linux/</loc><lastmod>2022-11-27T15:30:30&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</loc><lastmod>2022-11-27T15:30:30&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/11/27/adb_for_arm/</loc><lastmod>2022-11-27T15:30:30&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/11/20/uper/</loc><lastmod>2022-11-20T16:03:26&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/per/</loc><lastmod>2022-11-20T16:03:26&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/</loc><lastmod>2022-11-02T17:47:15&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/%E5%8D%8F%E8%AE%AE%E6%A0%87%E5%87%86/</loc><lastmod>2022-11-02T17:47:15&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</loc><lastmod>2022-11-01T09:21:25&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/categories/driver/</loc><lastmod>2022-10-09T17:02:23&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/linux%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85/</loc><lastmod>2022-10-09T17:02:23&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/10/linux_driver/</loc><lastmod>2022-10-09T17:02:23&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/telematics-sdk/</loc><lastmod>2022-09-13T15:56:18&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/yocto/</loc><lastmod>2022-09-13T15:56:18&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</loc><lastmod>2022-09-13T15:56:18&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</loc><lastmod>2022-09-04T17:12:58&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/%E6%A2%AF%E5%AD%90/</loc><lastmod>2022-09-04T17:12:58&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/categories/%E6%A2%AF%E5%AD%90/</loc><lastmod>2022-09-04T17:12:58&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc><lastmod>2022-09-04T17:12:58&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/markdown/</loc><lastmod>2022-08-23T11:29:06&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/categories/markdown/</loc><lastmod>2022-08-23T11:29:06&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/tags/shortcodes/</loc><lastmod>2022-08-23T11:29:06&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/categories/shortcodes/</loc><lastmod>2022-08-23T11:29:06&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</loc><lastmod>2022-08-23T11:29:06&#43;08:00</lastmod></url><url>
-            <loc>https://rustintherubble.github.io/about/</loc><lastmod>2022-08-21T16:42:57&#43;08:00</lastmod></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://rustintherubble.github.io/en/sitemap.xml</loc>
+    
+      <lastmod>2023-02-20T14:22:11+08:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://rustintherubble.github.io/zh-cn/sitemap.xml</loc>
+    
+  </sitemap>
+  
+</sitemapindex>
