@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>json - 标签 - 渤海深处的博客</title>
+        <link>https://rustintherubble.github.io/tags/json/</link>
+        <description>json - 标签 - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 03 Mar 2023 21:12:07 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/json/" rel="self" type="application/rss+xml" /><item>
+    <title>跨语言传输 xml json protobuf 数据交换格式</title>
+    <link>https://rustintherubble.github.io/posts/2023/03/serialize/</link>
+    <pubDate>Fri, 03 Mar 2023 21:12:07 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/03/serialize/</guid>
+    <description><![CDATA[XML (Extensible Markup Language) 可扩展标记语言是一种通用和重量级的数据交换格式。以文本结构存储。 JSON (JavaScript Object Notation) 是一种通用和轻量级的数据交换格式。以文本结构存储。 protobuf (Google Protocol Buffers) 是]]></description>
+</item>
+</channel>
+</rss>

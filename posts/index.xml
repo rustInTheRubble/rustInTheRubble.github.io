@@ -3,7 +3,15 @@
         <title>所有文章 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/posts/</link>
         <description>所有文章 | 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 03 Mar 2023 21:12:07 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>跨语言传输 xml json protobuf 数据交换格式</title>
+    <link>https://rustintherubble.github.io/posts/2023/03/serialize/</link>
+    <pubDate>Fri, 03 Mar 2023 21:12:07 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/03/serialize/</guid>
+    <description><![CDATA[XML (Extensible Markup Language) 可扩展标记语言是一种通用和重量级的数据交换格式。以文本结构存储。 JSON (JavaScript Object Notation) 是一种通用和轻量级的数据交换格式。以文本结构存储。 protobuf (Google Protocol Buffers) 是]]></description>
+</item>
+<item>
     <title>openssl ECDSA 库消息签名和验签</title>
     <link>https://rustintherubble.github.io/posts/2023/02/openssl_ecdsa/</link>
     <pubDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</guid>
     <description><![CDATA[背景 主机已经配置好了v2rayN科学上网，版本v5.16 虚拟机使用virtual box，系统为ubuntu 20.04，网络模式为NAT 主机端]]></description>
-</item>
-<item>
-    <title>文章撰写 Markdown Shortcode 语法相关</title>
-    <link>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</link>
-    <pubDate>Tue, 23 Aug 2022 11:29:06 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/posts/2022/08/markdown-shortcode/</guid>
-    <description><![CDATA[边学边手搓 文章前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数. 在LoveIt主题下，主要参数包括： title: 文章标题. subtitle: 文章副标题. date: 这篇]]></description>
 </item>
 </channel>
 </rss>
