@@ -3,7 +3,15 @@
         <title>所有文章 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/posts/</link>
         <description>所有文章 | 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 03 Mar 2023 21:12:07 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>解决 win10 启动qt creator 界面不出现或者无响应的问题</title>
+    <link>https://rustintherubble.github.io/posts/2023/03/qt_creator_launch/</link>
+    <pubDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/03/qt_creator_launch/</guid>
+    <description><![CDATA[安装情况 自己在win10上安装了多个版本的qt，配置过环境变量 qt-opensource-windows-x86-5.12.12 qt-opensource-windows-x86-5.9.0 qt-opensource-windows-x86-mingw492-5.6.2 qt历史版本下载，部分qt5版本(如qt 5.6)在另一个目录下载 问题 在我]]></description>
+</item>
+<item>
     <title>跨语言传输 xml json protobuf 数据交换格式</title>
     <link>https://rustintherubble.github.io/posts/2023/03/serialize/</link>
     <pubDate>Fri, 03 Mar 2023 21:12:07 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</guid>
     <description><![CDATA[在Telematics SDK User Guide中其实介绍了安装步骤，但是写得很简洁，这里在其手册基础上补充了需要注意的东西 前期准备 参考手册 Qualcomm Telematics SDK User Guide v]]></description>
-</item>
-<item>
-    <title>使用主机VPN v2rayN为虚拟机ubuntu配置端口，实现虚拟机代理翻墙</title>
-    <link>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</link>
-    <pubDate>Sun, 04 Sep 2022 17:12:58 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/posts/2022/09/virtualbox-proxy/</guid>
-    <description><![CDATA[背景 主机已经配置好了v2rayN科学上网，版本v5.16 虚拟机使用virtual box，系统为ubuntu 20.04，网络模式为NAT 主机端]]></description>
 </item>
 </channel>
 </rss>

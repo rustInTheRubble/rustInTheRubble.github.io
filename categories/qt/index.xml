@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>QT - 分类 - 渤海深处的博客</title>
+        <link>https://rustintherubble.github.io/categories/qt/</link>
+        <description>QT - 分类 - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/categories/qt/" rel="self" type="application/rss+xml" /><item>
+    <title>解决 win10 启动qt creator 界面不出现或者无响应的问题</title>
+    <link>https://rustintherubble.github.io/posts/2023/03/qt_creator_launch/</link>
+    <pubDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/03/qt_creator_launch/</guid>
+    <description><![CDATA[安装情况 自己在win10上安装了多个版本的qt，配置过环境变量 qt-opensource-windows-x86-5.12.12 qt-opensource-windows-x86-5.9.0 qt-opensource-windows-x86-mingw492-5.6.2 qt历史版本下载，部分qt5版本(如qt 5.6)在另一个目录下载 问题 在我]]></description>
+</item>
+</channel>
+</rss>
