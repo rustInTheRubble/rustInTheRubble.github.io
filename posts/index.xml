@@ -3,7 +3,15 @@
         <title>所有文章 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/posts/</link>
         <description>所有文章 | 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Socket 通信处理不定长的数据包( Python 与 C&#43;&#43; )</title>
+    <link>https://rustintherubble.github.io/posts/2023/03/socket_tcp_indefinite_length_packet/</link>
+    <pubDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/03/socket_tcp_indefinite_length_packet/</guid>
+    <description><![CDATA[3种一般方法 在使用 Python 和 C++ 的 socket 通信时，如果要处理不定长的数据包，可以使用以下方法之一： 在发送数据包之前，先发送一个固定长度的头部信息，用来指示]]></description>
+</item>
+<item>
     <title>解决 win10 启动qt creator 界面不出现或者无响应的问题</title>
     <link>https://rustintherubble.github.io/posts/2023/03/qt_creator_launch/</link>
     <pubDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/10/linux_driver/</guid>
     <description><![CDATA[内核驱动 开发板使用的是飞凌的OKMX6Q-S3开发板，搭载的是NXP i.MX6Quad. 这里以cp210x usb转串口驱动为例 cp210x驱动在linux 2.]]></description>
-</item>
-<item>
-    <title>安装使用高通的 Telematics SDK</title>
-    <link>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</link>
-    <pubDate>Tue, 13 Sep 2022 15:56:18 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/posts/2022/09/building-telematics-sdk/</guid>
-    <description><![CDATA[在Telematics SDK User Guide中其实介绍了安装步骤，但是写得很简洁，这里在其手册基础上补充了需要注意的东西 前期准备 参考手册 Qualcomm Telematics SDK User Guide v]]></description>
 </item>
 </channel>
 </rss>

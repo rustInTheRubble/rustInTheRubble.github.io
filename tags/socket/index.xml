@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Socket - 标签 - 渤海深处的博客</title>
+        <link>https://rustintherubble.github.io/tags/socket/</link>
+        <description>Socket - 标签 - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/socket/" rel="self" type="application/rss+xml" /><item>
+    <title>Socket 通信处理不定长的数据包( Python 与 C&#43;&#43; )</title>
+    <link>https://rustintherubble.github.io/posts/2023/03/socket_tcp_indefinite_length_packet/</link>
+    <pubDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/03/socket_tcp_indefinite_length_packet/</guid>
+    <description><![CDATA[3种一般方法 在使用 Python 和 C++ 的 socket 通信时，如果要处理不定长的数据包，可以使用以下方法之一： 在发送数据包之前，先发送一个固定长度的头部信息，用来指示]]></description>
+</item>
+</channel>
+</rss>

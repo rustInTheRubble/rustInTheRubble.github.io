@@ -3,7 +3,31 @@
         <title>Tags - 标签 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/tags/</link>
         <description>Tags - 标签 - 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>c&#43;&#43;</title>
+    <link>https://rustintherubble.github.io/tags/c&#43;&#43;/</link>
+    <pubDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/tags/c&#43;&#43;/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>python</title>
+    <link>https://rustintherubble.github.io/tags/python/</link>
+    <pubDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/tags/python/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Socket</title>
+    <link>https://rustintherubble.github.io/tags/socket/</link>
+    <pubDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/tags/socket/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>QT</title>
     <link>https://rustintherubble.github.io/tags/qt/</link>
     <pubDate>Sun, 19 Mar 2023 16:43:40 &#43;0800</pubDate>
@@ -57,30 +81,6 @@
     <pubDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</pubDate>
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/tags/openssl/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>数字签名</title>
-    <link>https://rustintherubble.github.io/tags/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/</link>
-    <pubDate>Mon, 20 Feb 2023 12:40:34 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/tags/%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>ASN.1</title>
-    <link>https://rustintherubble.github.io/tags/asn.1/</link>
-    <pubDate>Wed, 30 Nov 2022 15:36:24 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/tags/asn.1/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>交叉编译</title>
-    <link>https://rustintherubble.github.io/tags/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</link>
-    <pubDate>Sun, 27 Nov 2022 15:30:30 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/tags/%E4%BA%A4%E5%8F%89%E7%BC%96%E8%AF%91/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
