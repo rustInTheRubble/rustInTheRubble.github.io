@@ -3,7 +3,15 @@
         <title>所有文章 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/posts/</link>
         <description>所有文章 | 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 08 Apr 2023 21:47:20 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>C&#43;&#43; UTC时间戳转化为年月日时分秒</title>
+    <link>https://rustintherubble.github.io/posts/2023/04/c&#43;&#43;_timestampformat/</link>
+    <pubDate>Sat, 08 Apr 2023 21:47:20 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/04/c&#43;&#43;_timestampformat/</guid>
+    <description><![CDATA[方法 使用中的 gmtime 进行转换，输入的 timestamp 格式为 Milliseconds 级别 转换为北京时间需要在UTC基础上加8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #include &lt;iostream&gt; #include &lt;ctime&gt; #include &lt;string&gt; #define CCT (+8) std::string Stamp2Time(long]]></description>
+</item>
+<item>
     <title>Socket 通信处理不定长的数据包( Python 与 C&#43;&#43; )</title>
     <link>https://rustintherubble.github.io/posts/2023/03/socket_tcp_indefinite_length_packet/</link>
     <pubDate>Thu, 23 Mar 2023 21:56:17 &#43;0800</pubDate>
@@ -74,14 +82,6 @@
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</guid>
     <description><![CDATA[基础介绍 根据维基百科的介绍，Abstract Syntax Notation One ( ASN.1 ) 是一种标准接口描述语言，用于定义可以以跨平台方式进行序列化和反序列化的数据结构。它广]]></description>
-</item>
-<item>
-    <title>为 i.MX 6 开发板配置 Linux 驱动</title>
-    <link>https://rustintherubble.github.io/posts/2022/10/linux_driver/</link>
-    <pubDate>Sun, 09 Oct 2022 17:02:23 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/posts/2022/10/linux_driver/</guid>
-    <description><![CDATA[内核驱动 开发板使用的是飞凌的OKMX6Q-S3开发板，搭载的是NXP i.MX6Quad. 这里以cp210x usb转串口驱动为例 cp210x驱动在linux 2.]]></description>
 </item>
 </channel>
 </rss>
