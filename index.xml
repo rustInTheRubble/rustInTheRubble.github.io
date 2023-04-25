@@ -3,15 +3,23 @@
         <title>渤海深处的博客</title>
         <link>https://rustintherubble.github.io/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sat, 08 Apr 2023 21:47:20 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 25 Apr 2023 10:39:58 &#43;0800</lastBuildDate>
             <atom:link href="https://rustintherubble.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>PC向开发板传输文件 通过wifi</title>
+    <link>https://rustintherubble.github.io/posts/2023/04/transfer_files_through_wifi/</link>
+    <pubDate>Tue, 25 Apr 2023 10:39:58 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/04/transfer_files_through_wifi/</guid>
+    <description><![CDATA[目的 在PC上交叉编译好的文件要传输的开发板，用u盘的话太麻烦 PC使用的语言python，开发板使用的是c++ 通过wifi建立socket通信]]></description>
+</item>
+<item>
     <title>C&#43;&#43; UTC时间戳转化为年月日时分秒</title>
     <link>https://rustintherubble.github.io/posts/2023/04/c&#43;&#43;_timestampformat/</link>
     <pubDate>Sat, 08 Apr 2023 21:47:20 &#43;0800</pubDate>
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2023/04/c&#43;&#43;_timestampformat/</guid>
-    <description><![CDATA[方法 使用中的 gmtime 进行转换，输入的 timestamp 格式为 Milliseconds 级别 转换为北京时间需要在UTC基础上加8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #include &lt;iostream&gt; #include &lt;ctime&gt; #include &lt;string&gt; #define CCT (+8) std::string Stamp2Time(long]]></description>
+    <description><![CDATA[方法 使用&lt;ctime&gt;中的 gmtime 进行转换，输入的 timestamp 格式为 Milliseconds 级别 转换为北京时间需要在UTC基础上加8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17]]></description>
 </item>
 <item>
     <title>Socket 通信处理不定长的数据包( Python 与 C&#43;&#43; )</title>
@@ -76,14 +84,6 @@
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/11/01/c-v2x_requirements_of_security/</guid>
     <description><![CDATA[通信架构 C-V2X通信有两种操作模式，基于PC5和基于LTE-Uu，这个标准涵盖了这两个模式。但目前自己可能更关注PC5一些。 考虑V2X设备]]></description>
-</item>
-<item>
-    <title>抽象语法标记ASN.1与V2X</title>
-    <link>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</link>
-    <pubDate>Tue, 01 Nov 2022 09:21:25 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/posts/2022/11/01/asn.1-v2x/</guid>
-    <description><![CDATA[基础介绍 根据维基百科的介绍，Abstract Syntax Notation One ( ASN.1 ) 是一种标准接口描述语言，用于定义可以以跨平台方式进行序列化和反序列化的数据结构。它广]]></description>
 </item>
 </channel>
 </rss>

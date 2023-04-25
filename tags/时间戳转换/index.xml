@@ -9,7 +9,7 @@
     <pubDate>Sat, 08 Apr 2023 21:47:20 &#43;0800</pubDate>
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2023/04/c&#43;&#43;_timestampformat/</guid>
-    <description><![CDATA[方法 使用中的 gmtime 进行转换，输入的 timestamp 格式为 Milliseconds 级别 转换为北京时间需要在UTC基础上加8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 #include &lt;iostream&gt; #include &lt;ctime&gt; #include &lt;string&gt; #define CCT (+8) std::string Stamp2Time(long]]></description>
+    <description><![CDATA[方法 使用&lt;ctime&gt;中的 gmtime 进行转换，输入的 timestamp 格式为 Milliseconds 级别 转换为北京时间需要在UTC基础上加8 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17]]></description>
 </item>
 </channel>
 </rss>

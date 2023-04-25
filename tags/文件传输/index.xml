@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>文件传输 - 标签 - 渤海深处的博客</title>
+        <link>https://rustintherubble.github.io/tags/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/</link>
+        <description>文件传输 - 标签 - 渤海深处的博客</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 25 Apr 2023 10:39:58 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93/" rel="self" type="application/rss+xml" /><item>
+    <title>PC向开发板传输文件 通过wifi</title>
+    <link>https://rustintherubble.github.io/posts/2023/04/transfer_files_through_wifi/</link>
+    <pubDate>Tue, 25 Apr 2023 10:39:58 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/04/transfer_files_through_wifi/</guid>
+    <description><![CDATA[目的 在PC上交叉编译好的文件要传输的开发板，用u盘的话太麻烦 PC使用的语言python，开发板使用的是c++ 通过wifi建立socket通信]]></description>
+</item>
+</channel>
+</rss>
