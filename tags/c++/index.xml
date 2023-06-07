@@ -3,7 +3,15 @@
         <title>c&#43;&#43; - 标签 - 渤海深处的博客</title>
         <link>https://rustintherubble.github.io/tags/c&#43;&#43;/</link>
         <description>c&#43;&#43; - 标签 - 渤海深处的博客</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Tue, 25 Apr 2023 10:39:58 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 31 May 2023 10:37:43 &#43;0800</lastBuildDate><atom:link href="https://rustintherubble.github.io/tags/c&#43;&#43;/" rel="self" type="application/rss+xml" /><item>
+    <title>C&#43;&#43; Primer Plus 笔记</title>
+    <link>https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/</link>
+    <pubDate>Wed, 31 May 2023 10:37:43 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/</guid>
+    <description><![CDATA[内存模型和名称空间 单独编译 组件函数独立放置在文件中，将程序分为头文件、源代码文件、源代码文件&hellip; 头文件常包含 函数原型 使用 #define 或 const 定]]></description>
+</item>
+<item>
     <title>PC向开发板传输文件 通过wifi</title>
     <link>https://rustintherubble.github.io/posts/2023/04/transfer_files_through_wifi/</link>
     <pubDate>Tue, 25 Apr 2023 10:39:58 &#43;0800</pubDate>

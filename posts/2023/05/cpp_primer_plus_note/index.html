@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>C&#43;&#43; Primer Plus 笔记 - 渤海深处的博客</title><meta name="Description" content="This is my cool site"><meta property="og:title" content="C&#43;&#43; Primer Plus 笔记" />
+<meta property="og:description" content="内存模型和名称空间 单独编译 组件函数独立放置在文件中，将程序分为头文件、源代码文件、源代码文件&hellip; 头文件常包含 函数原型 使用 #define 或 const 定" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-31T10:37:43+08:00" />
+<meta property="article:modified_time" content="2023-06-07T11:53:18+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="C&#43;&#43; Primer Plus 笔记"/>
+<meta name="twitter:description" content="内存模型和名称空间 单独编译 组件函数独立放置在文件中，将程序分为头文件、源代码文件、源代码文件&hellip; 头文件常包含 函数原型 使用 #define 或 const 定"/>
+<meta name="application-name" content="渤海深处的博客">
+<meta name="apple-mobile-web-app-title" content="渤海深处的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2023/04/transfer_files_through_wifi/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C++ Primer Plus 笔记",
+        "inLanguage": "zh-cn",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note\/"
+        },"genre": "posts","keywords": "书籍, c\u002b\u002b","wordcount":  6747 ,
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note\/","datePublished": "2023-05-31T10:37:43+08:00","dateModified": "2023-06-07T11:53:18+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "渤海深处"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="渤海深处的博客">渤海深处的博客</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/"> 首页 </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="渤海深处的博客">渤海深处的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/" title="">首页</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">C++ Primer Plus 笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-05-31">2023-05-31</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6747 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 14 分钟&nbsp;
+
+                <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
+                <span id="busuanzi_container_page_pv">
+                    <span id="busuanzi_value_page_pv"></span>
+                  </span>次
+            </div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ol>
+    <li><a href="#内存模型和名称空间">内存模型和名称空间</a>
+      <ol>
+        <li><a href="#单独编译">单独编译</a></li>
+        <li><a href="#存储持续性作用域和链接性">存储持续性、作用域和链接性</a>
+          <ol>
+            <li><a href="#自动存储持续性">自动存储持续性</a></li>
+            <li><a href="#静态持续">静态持续</a></li>
+          </ol>
+        </li>
+        <li><a href="#名称空间">名称空间</a></li>
+      </ol>
+    </li>
+    <li><a href="#对象和类">对象和类</a>
+      <ol>
+        <li><a href="#过程性编程和面向对象编程">过程性编程和面向对象编程</a></li>
+        <li><a href="#抽象和类">抽象和类</a></li>
+        <li><a href="#类的构造函数和析构函数">类的构造函数和析构函数</a></li>
+        <li><a href="#this指针">this指针</a></li>
+        <li><a href="#对象数组">对象数组</a></li>
+        <li><a href="#类作用域">类作用域</a></li>
+        <li><a href="#抽象数据类型">抽象数据类型</a></li>
+      </ol>
+    </li>
+    <li><a href="#使用类">使用类</a>
+      <ol>
+        <li><a href="#运算符重载">运算符重载</a></li>
+        <li><a href="#计算时间一个运算符重载示例">计算时间：一个运算符重载示例</a>
+          <ol>
+            <li><a href="#重载限制">重载限制</a></li>
+          </ol>
+        </li>
+        <li><a href="#友元">友元</a></li>
+        <li><a href="#重载运算符作为成员函数还是非成员函数">重载运算符：作为成员函数还是非成员函数</a></li>
+        <li><a href="#再谈重载一个矢量类">再谈重载：一个矢量类</a></li>
+        <li><a href="#类的自动转换和强制类型转换">类的自动转换和强制类型转换</a></li>
+      </ol>
+    </li>
+    <li><a href="#类和动态内存分配">类和动态内存分配</a>
+      <ol>
+        <li><a href="#动态内存和类">动态内存和类</a></li>
+        <li><a href="#改进后的string类">改进后的String类</a></li>
+        <li><a href="#在构造函数中使用new时应注意的事项">在构造函数中使用new时应注意的事项</a></li>
+        <li><a href="#有关返回对象的说明">有关返回对象的说明</a></li>
+        <li><a href="#使用指向对象的指针">使用指向对象的指针</a></li>
+        <li><a href="#复习各种技术">复习各种技术</a></li>
+        <li><a href="#队列模拟">队列模拟</a></li>
+      </ol>
+    </li>
+    <li><a href="#类继承">类继承</a>
+      <ol>
+        <li><a href="#一个简单的基类">一个简单的基类</a></li>
+        <li><a href="#继承is-a关系">继承：is-a关系</a></li>
+        <li><a href="#多态公有继承">多态公有继承</a></li>
+        <li><a href="#静态联编和动态联编">静态联编和动态联编</a></li>
+        <li><a href="#访问控制protected">访问控制：protected</a></li>
+        <li><a href="#抽象基类">抽象基类</a></li>
+        <li><a href="#继承和动态内存分配">继承和动态内存分配</a></li>
+        <li><a href="#类设计回顾">类设计回顾</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="内存模型和名称空间">内存模型和名称空间</h2>
+<h3 id="单独编译">单独编译</h3>
+<p>组件函数独立放置在文件中，将程序分为头文件、源代码文件、源代码文件&hellip;</p>
+<p>头文件常包含</p>
+<ul>
+<li>函数原型</li>
+<li>使用 <code>#define</code> 或 <code>const</code> 定义的符号常量</li>
+<li>结构声明</li>
+<li>类声明</li>
+<li>模板声明</li>
+<li>内联函数</li>
+</ul>
+<p>同一个文件中，同一个头文件只能包含一次。c/c++用预处理器编译指令 #ifndef 来避免多次包含。</p>
+<h3 id="存储持续性作用域和链接性">存储持续性、作用域和链接性</h3>
+<p>c++ 使用三种(c++11 中是4种)方案来存储数据：自动存储持续性，静态存储持续性，线程存储持续性（c++11），动态存储持续性。</p>
+<h4 id="自动存储持续性">自动存储持续性</h4>
+<p>在默认情况下，在函数中声明的函数参数和变量的存储持续性为自动，作用域为局部，没有链接性。</p>
+<p>由于自动变量的数目随函数的开始和结束而增减，因此程序必须在运行时对自动变量进行管理。常用的方法是留出一段内存，并将其视为<strong>栈</strong>，以管理变量的增减。</p>
+<h4 id="静态持续">静态持续</h4>
+<p>和C语言一样，C++也为静态存储持续性变量提供了3 种链接性:外部链接性(可在其他文件中访问)、内部链接性(只能在当前文件中访问)和无链接性(只能在当前函数或代码块中问)。这3 种链接性都在整个程序执行期间存在，与自动变量相比，它们的寿命更长。</p>
+<p>编译器将分配固定的内存块来存储所有的静态变量，这些变量在整个程序执行期间一直存在。另外，如果没有显式地初始化静态变量，编译器将把它设置为0。在默认情况下，<strong>静态数组和结构将每个元素或成员的所有位都设置为0</strong>。</p>
+<p>在 C++ 代码中，空指针用0表示，但内部可能采用非零表示，因此指针变量将被初始化相应的内部表示。结构成员被零初始化，日填充位都被设置为零。</p>
+<p>在函数的外面使用关键字 static 定义的变量的作用域为整个文件，但是不能用于其他文件(内部链接性)</p>
+<p>C++提供了两种变量声明。一种是定义声明(defining declaration)或简称为定义 (definition);另一种是引用声明(referencing declaration)或简称为声明(declaration)。引用声明使用关键字<strong>extern</strong>，且不进行初始化;否则，声明为定义，导致分配存储空间</p>
+<p>外部存储尤其适于表示常量数据，因为这样可以使用关键字 const 来防止数据被修改。</p>
+<p>####　动态分配
+使用C++运算符<code>new</code>(或C函数 <code>malloc()</code>)分配的内存，这种内存被称为动态内存。</p>
+<p><code>new</code> 可能会失败，引发异常 <code>std::bad_alloc</code></p>
+<p><code>new</code> 负责在<strong>堆</strong> (heap) 中找到一个足以能够满足要求的内存块。</p>
+<h3 id="名称空间">名称空间</h3>
+<p>名称空间可以嵌套</p>
+<p>可以通过省略名称空间的名称来创建未命名的名称空间:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">namespace</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">ice</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>不能在未命名名称空间所属文件之外的其他文件中，使用该名称空间中的名称。这提供了链接性为内部的静态变量的替代品。</p>
+<h2 id="对象和类">对象和类</h2>
+<h3 id="过程性编程和面向对象编程">过程性编程和面向对象编程</h3>
+<p>采用过程性编程方法时，首先考虑要遵循的步骤，然后考虑如何表示这些数据</p>
+<p>采用OOP 方法时，首先从用户的角度考虑对象一描述对象所需的数据以及描述用户与数据交互所需的操作。完成对接口的描述后，需要确定如何实现接口和数据存储。</p>
+<h3 id="抽象和类">抽象和类</h3>
+<p>一般来说，类规范由两个部分组成。</p>
+<ul>
+<li>类声明:以数据成员的方式描述数据部分，以成员函数(被称为方法)的方式描述公有接口。</li>
+<li>类方法定义: 描述如何实现类成员函数。</li>
+</ul>
+<p>将实现细节放在一起并将他们与抽象分开被称为<strong>封装</strong>。</p>
+<p>数据隐藏不仅可以防止直接访问数据，还让开发者(类的用户) 无需了解数据是如何被表示的。</p>
+<p>类与结构之间唯一的区别是，结构的默认访问类型是 public，而类为private。</p>
+<p>其定义位于类声明(一般来说就是hpp)中的函数都将<strong>自动成为内联函数</strong>。</p>
+<h3 id="类的构造函数和析构函数">类的构造函数和析构函数</h3>
+<p>为区分构造函数参数名和类成员变量名，常见做法有数据成员名前加<code>m_</code>，或者成员名后加<code>_</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">private</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">m_company</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">company_</span><span class="p">;</span> <span class="c1">// or
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>c++ 提供两种使用构造函数初始化对象的方式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Stock</span> <span class="nf">garment</span><span class="p">(</span><span class="s">&#34;Furry Mason&#34;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mf">2.5</span><span class="p">);</span> <span class="c1">//这种格式更紧凑，它与下面的显式调用等价
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Stock</span> <span class="n">garment</span> <span class="o">=</span> <span class="n">Stock</span><span class="p">(</span><span class="s">&#34;Furry Mason&#34;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mf">2.5</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用<code>new</code>时</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Stock</span> <span class="o">*</span><span class="n">pstock</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stock</span><span class="p">(</span><span class="s">&#34;Electroshock Games&#34;</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mf">19.0</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认构造函数是在未提供显式初始值时，用来创建对象的构造函数,如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Stock</span> <span class="n">stock</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>当且仅当没有定义任何构造函数时，编译器才会提供默认构造函数</strong>。为类定义了构造函数后,程序员就必须为它提供默认构造函数。通常应提供对所有类成员做隐式初始化的默认构造函数。</p>
+<p>构造函数和析构函数都没有返回值和声明类型。析构函数没有参数。</p>
+<p>在 C++11 中，可将列表初始化语法用于类，只要提供与某个构造函数的参数列表匹配的内容。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Stock</span> <span class="n">hot</span> <span class="n">tip</span> <span class="o">=</span><span class="p">{</span><span class="s">&#34;Derivatives Plus Plus&#34;</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mf">45.0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">Stock</span><span class="o">::</span><span class="n">Stock</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="o">&amp;</span> <span class="n">co</span><span class="p">,</span> <span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="kt">double</span> <span class="n">pr</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">);</span> <span class="c1">// 与之匹配的构造函数
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>类函数中，把<code>const</code>放到函数括号后，就称为const成员函数。</p>
+<h3 id="this指针">this指针</h3>
+<p>this 指针指向用来调用成员函数的对象</p>
+<h3 id="对象数组">对象数组</h3>
+<h3 id="类作用域">类作用域</h3>
+<p>C++11 提供了一种新枚举，其枚举量的作用域为类。这种枚举的声明类似于下面这样:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">enum</span> <span class="k">class</span> <span class="nc">egg</span> <span class="p">{</span><span class="n">Small</span><span class="p">,</span> <span class="n">Medium</span><span class="p">,</span> <span class="n">Large</span><span class="p">,</span> <span class="n">Jumbo</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="k">enum</span> <span class="k">class</span> <span class="nc">t_shirt</span> <span class="p">{</span><span class="n">Small</span><span class="p">,</span><span class="n">Medium</span><span class="p">,</span> <span class="n">Large</span><span class="p">,</span> <span class="n">Xlarge</span><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>也可使用关键字 struct 代替 class。无论使用哪种方式，都需要使用枚举名来限定枚举量:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">egg</span> <span class="n">choice</span><span class="o">=</span> <span class="n">egg</span><span class="o">::</span><span class="n">Large</span><span class="p">;</span><span class="c1">// the Large enumerator of the egg enumt 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">shirt</span> <span class="n">Floyd</span> <span class="o">=</span> <span class="n">t_shirt</span><span class="o">::</span><span class="n">Large</span><span class="p">;</span> <span class="c1">// the Large enumerator of the t shirt enum
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="抽象数据类型">抽象数据类型</h3>
+<h2 id="使用类">使用类</h2>
+<h3 id="运算符重载">运算符重载</h3>
+<p>运算符重载是一种形式的 C++多态。</p>
+<p>隐藏了内部机理，并强调了实质，这是 OOP 的另一个目标。
+要重载运算符，需使用被称为运算符函数的特殊函数形式。运算符函数的格式如下</p>
+<p><code>operatorop(argument-list)</code></p>
+<h3 id="计算时间一个运算符重载示例">计算时间：一个运算符重载示例</h3>
+<p>对于一个Time类，将其sum函数转换为运算符+</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Time</span> <span class="n">Time</span><span class="o">::</span><span class="n">Sum</span><span class="p">(</span><span class="k">const</span> <span class="n">Time</span> <span class="o">&amp;</span> <span class="n">t</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Time</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span><span class="p">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">minutes</span> <span class="o">+</span> <span class="n">t</span><span class="p">.</span><span class="n">minutes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span><span class="p">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">hours</span> <span class="o">+</span> <span class="n">t</span><span class="p">.</span><span class="n">hours</span> <span class="o">+</span> <span class="n">sum</span><span class="p">.</span><span class="n">minutes</span> <span class="o">/</span> <span class="mi">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span><span class="p">.</span><span class="n">minutes</span><span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 转换为
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Time</span> <span class="n">Time</span><span class="o">::</span><span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Time</span> <span class="o">&amp;</span> <span class="n">t</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Time</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span><span class="p">.</span><span class="n">minutes</span> <span class="o">=</span> <span class="n">minutes</span> <span class="o">+</span> <span class="n">t</span><span class="p">.</span><span class="n">minutes</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span><span class="p">.</span><span class="n">hours</span> <span class="o">=</span> <span class="n">hours</span> <span class="o">+</span> <span class="n">t</span><span class="p">.</span><span class="n">hours</span> <span class="o">+</span> <span class="n">sum</span><span class="p">.</span><span class="n">minutes</span> <span class="o">/</span> <span class="mi">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span><span class="p">.</span><span class="n">minutes</span><span class="o">=</span> <span class="mi">60</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="重载限制">重载限制</h4>
+<ol>
+<li>重载后的运算符必须至少有一个操作数是用户定义的类型，这将防止用户为标准类型重载运算符。</li>
+<li>使用运算符时不能违反运算符原来的句法规则。不能修改运算符的优先级。</li>
+<li>不能创建新运算符。 如不能用**表示幂</li>
+<li>不能重载下面的运算符
+<ul>
+<li><code>sizeof</code>: sizeof运算符。</li>
+<li><code>.</code>: 成员运算符。</li>
+<li><code>.*</code>: 成员指针运算符</li>
+<li><code>::</code>: 作用域解析运算符</li>
+<li><code>?:</code>: 条件运算符。</li>
+<li><code>typeid</code>: 一个RTTI运算符</li>
+<li><code>const_cast</code>: 强制类型转换运算符</li>
+<li><code>dynamic_cast</code>: 强制类型转换运算符</li>
+<li><code>reinterpret_cast</code>: 强制类型转换运算符</li>
+<li><code>static_cast</code>: 强制类型转换运算符。</li>
+</ul>
+</li>
+<li>下面的运算符只能通过成员函数进行重载
+<ul>
+<li><code>=</code>: 赋值运算符。</li>
+<li><code>()</code>: 函数调用运算符。</li>
+<li><code>[]</code>: 下标运算符。</li>
+<li><code>-&gt;</code>: 通过指针访问类成员的运算符。</li>
+</ul>
+</li>
+</ol>
+<h3 id="友元">友元</h3>
+<p>友元有3种：友元函数；友元类；友元成员函数。</p>
+<p>通过让函数成为类的友元，可以赋予该函数与类的成员函数相同的访问权限</p>
+<p>非成员函数，<strong>显示声明对象参数</strong>，创建友元函数的第一步是将其原型放在类声明中，并在原型声明前加上关键字 friend:
+<code>friend Time operator*(double m, const Time &amp; t); // goes in class declaration</code></p>
+<p>该原型意味着下面两点:</p>
+<ul>
+<li>虽然operator*()函数是<strong>在类声明中声明的，但它不是成员函数</strong>，因此不能使用成员运算符来调用</li>
+<li>虽然operator*()函数不是成员函数，但它<strong>与成员函数的访问权限相同</strong>。</li>
+</ul>
+<p>提示:一般来说，要重载<code>&lt;&lt;</code>运算符来显示 <code>c_name</code> 的对象，可使用一个友元函数，其定义如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">c_name</span> <span class="o">&amp;</span> <span class="n">obj</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="p">...</span> <span class="p">;</span> <span class="c1">// display object contents
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="重载运算符作为成员函数还是非成员函数">重载运算符：作为成员函数还是非成员函数</h3>
+<p>非成员版本的重载运算符函数所需的形参数目与运算符使用的操作数数目相同;而成员版本所需的参数数目少一个，因为其中的一个操作数是被隐式地传递的调用对象。</p>
+<h3 id="再谈重载一个矢量类">再谈重载：一个矢量类</h3>
+<p>因为运算符重载是通过函数来实现的，所以只要运算符函数的特征标不同，使用的运算符数量与相应的内置 C++运算符相同，就可以多次重载同一个运算符。</p>
+<p>对于只有二元形式的运算符(如除法运算符),只能将其重载为二元运算符。</p>
+<p>rand()函数将一种算法用于一个初始种子值来获得随机数，该随机值将用作下一次函数调用的种子) 依此类推。这些数实际上是伪随机数，因为 10 次连续的调用通常将生成10个同样的随机数(具体值取决于实现)。</p>
+<p>然而，srand( )函数允许覆盖默认的种子值，重新启动另一个随机数序列。该程序使用 time (0) 的返回值来设置种子。time(0)函数返回当前时间，通常为从某一个日期开始的秒数。</p>
+<h3 id="类的自动转换和强制类型转换">类的自动转换和强制类型转换</h3>
+<p>C++语言不自动转换不兼容的类型。</p>
+<p>只接受一个参数的构造函数定义了从参数类型到类类型的转换。如果使用关键字 explicit 限定了这种构造函数，则它只能用于显示转换，否则也可以用于隐式转换。</p>
+<p>要转换为 typeName类型，需要使用这种形式的转换函数:</p>
+<p><code>operator typeName();</code></p>
+<ul>
+<li>转换函数必须是类方法;</li>
+<li>转换函数不能指定返回类型;</li>
+<li>转换函数不能有参数;</li>
+</ul>
+<p>这样，下面的语句将与成员函数<code>operator +(double x)</code>完全匹配:</p>
+<p><code>total = jennySt + kennyD; // Stonewt + double</code></p>
+<p>而下面的语句将与友元函数<code>operator +(doublex, Stonewt &amp;s)</code>完全匹配:</p>
+<p><code>total = pennyD + jennySt; // double + Stonewt</code></p>
+<h2 id="类和动态内存分配">类和动态内存分配</h2>
+<h3 id="动态内存和类">动态内存和类</h3>
+<p>静态数据成员在类声明中声明，在包含类方法的文件中初始化。初始化时使用作用域运算符来指出静态成员所属的类。但如果静态成员是整型或枚举型 const，则可以在类声明中初始化。</p>
+<p><strong>复制构造函数</strong>用于将一个对象复制到新创建的对象中。也就是说，它用于初始化过程中(包括按值传递参数)，而不是常规的赋值过程中。类的复制构造函数原型通常如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Class</span> <span class="nf">name</span><span class="p">(</span><span class="k">const</span> <span class="n">Class</span> <span class="n">name</span> <span class="o">&amp;</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>新建一个对象并将其初始化为同类现有对象时，复制构造函数都将被调用</li>
+<li>每当程序生成了对象副本时，编译器都将使用复制构造函数。具体地说，当函数按值传递对象或函数返回对象时，都将使用复制构造函数。</li>
+<li>默认的复制构造函数逐个复制非静态成员(成员复制也称为浅复制)，复制的是成员的值。</li>
+<li>隐式复制构造函数是按值进行复制的，对于<code>sailor.str = sport.str;</code>这里复制的并不是字符串，而是一个指向字符串的指针。</li>
+</ul>
+<p>如果类中包含了使用new 初始化的指针成员，应当定义一个复制构造函数，以复制指向的数据而不是指针，这被称为<strong>深度复制</strong>。复制的另一种形式(成员复制或浅复制)只是复制指针值。浅复制仅浅浅地复制指针信息，而不会深入“挖掘”以复制指针引用的结构。</p>
+<p>对于一个StringBad类，其显示复制构造函数形如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">StringBad</span><span class="o">::</span><span class="n">StringBad</span><span class="p">(</span><span class="k">const</span> <span class="n">StringBad</span> <span class="o">&amp;</span> <span class="n">st</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">num</span> <span class="n">strings</span><span class="o">++</span><span class="p">;</span> <span class="c1">// handle static member update
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">len</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">len</span><span class="p">;</span> <span class="c1">// same length
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span> <span class="p">[</span><span class="n">len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span> <span class="c1">// allot space
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">st</span><span class="p">.</span><span class="n">str</span><span class="p">);</span> <span class="c1">// copy string to new location
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">num</span> <span class="n">strings</span> <span class="o">&lt;&lt;</span><span class="s">&#34;: </span><span class="se">\&#34;</span><span class="s">&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">str</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;</span><span class="se">\&#34;</span><span class="s"> object created</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">;</span> <span class="c1">// For Your Information
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>浅复制的问题也可以通过<strong>重写赋值运算符</strong>的方式解决</p>
+<p>对于由于默认赋值运算符不合适而导致的问题，解决办法是提供赋值运算符(进行深度复制)定义。
+其实现与复制构造函数相似。</p>
+<ul>
+<li>由于目标对象可能引用了以前分配的数据，所以函数应使用 delete[]来释放这些数据。</li>
+<li>函数应当避免将对象赋给自身:否则，给对象重新赋值前，释放内存操作可能删除对象的内容</li>
+<li>函数返回一个指向调用对象的引用。</li>
+</ul>
+<p>对于一个StringBad类，重写赋值运算符函数形如</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">StringBad</span><span class="o">&amp;</span> <span class="n">StringBad</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">StringBad</span> <span class="o">&amp;</span> <span class="n">st</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">st</span><span class="p">)</span> <span class="c1">// object assigned to itself
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="c1">// all done
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">delete</span><span class="p">[]</span> <span class="n">str</span><span class="p">;</span> <span class="c1">// free old string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">len</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">len</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">char</span> <span class="p">[</span><span class="n">len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span> <span class="c1">// get space for new string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">str</span><span class="p">,</span><span class="n">st</span><span class="p">.</span><span class="n">str</span><span class="p">);</span> <span class="c1">// copy the string
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="c1">// return reference to invoking object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="改进后的string类">改进后的String类</h3>
+<p>在 C++98 中，字面值 0 有两个含义: 可以表示数字值零，也可以表示空指针。C++11，引入了 nullptr。</p>
+<p>不能通过对象调用静态成员函数；静态成员函数不能使用 this 指针，只能使用静态数据成员。</p>
+<h3 id="在构造函数中使用new时应注意的事项">在构造函数中使用new时应注意的事项</h3>
+<h3 id="有关返回对象的说明">有关返回对象的说明</h3>
+<p>当成员函数或独立的函数返回对象时，有几种返回方式可供选择。可以返回指向对象的引用、指向对象的 const引用或 const 对象。</p>
+<p>返回对象将调用复制构造函数，而返回引用不会</p>
+<h3 id="使用指向对象的指针">使用指向对象的指针</h3>
+<p>通常，如果 Class_name 是类，value 的类型为 Type_name，则下面的语句:
+<code>Class name * pclass = new Class name(value) ;</code>
+将调用如下构造函数:
+<code>Class name(Type name) ;</code></p>
+<p>这里可能还有一些琐碎的转换，例如:
+<code>Class name(const Type name &amp;) ;</code></p>
+<p>另外，如果不存在二义性，则将发生由原型匹配导致的转换( 如从 int到 double)。下面的初始化方式将调用默认构造函数:
+<code>Class name * ptr = new Class name;</code></p>
+<h3 id="复习各种技术">复习各种技术</h3>
+<h3 id="队列模拟">队列模拟</h3>
+<p><strong>成员初始化列表的语法</strong></p>
+<p>如果 Classy 是一个类，而 meml、mem2 和 mem3 都是这个类的数据成员，则类构造函数可以使用如下的语法来初始化数据成员:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="n">Classy</span><span class="o">::</span><span class="n">Classy</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="err">，</span><span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="o">:</span><span class="n">mem1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="err">，</span><span class="n">mem2</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="err">，</span><span class="n">mem3</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="n">m</span> <span class="o">+</span><span class="mi">2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>这种格式只能用于构造函数:</li>
+<li>必须用这种格式来初始化非静态 const 数据成员(至少在 C++11 之前是这样的 );</li>
+<li>必须用这种格式来初始化引用数据成员。</li>
+<li>数据成员被初始化的顺序与它们出现在类声明中的顺序相同，与初始化器中的排列顺序无关。</li>
+</ul>
+<p><strong>C++11的内始化</strong></p>
+<p>C++11 允许您以更直观的方式进行初始化:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c++" data-lang="c++"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Classy</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">mem1</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span><span class="c1">// in-class initialization
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">const</span> <span class="kt">int</span> <span class="n">mem2</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span> <span class="c1">// in-class initialization
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这与在构造函数中使用成员初始化列表等价</p>
+<h2 id="类继承">类继承</h2>
+<h3 id="一个简单的基类">一个简单的基类</h3>
+<p>关于派生类构造函数</p>
+<ul>
+<li>首先创建基类对象;</li>
+<li>派生类构造函数应通过成员初始化列表将基类信息传递给基类构造函数:</li>
+<li>派生类构造函数应初始化派生类新增的数据成员。</li>
+<li>若没有提供显式构造函数，因此将使用隐式构造函数。<strong>释放对象的顺序与创建对象的顺序相反</strong>即首先执行派生类的析构函数，然后自动调用基类的析构函数。</li>
+</ul>
+<p>派生类对象可以使用基类的方法，条件是方法不是私有的</p>
+<p>基类指针可以在不进行显式类型转换的情况下指向派生类对象;基类引用可以在不进行显式类型转换的情况下引用派生类对象。然而，<strong>基类指针或引用只能用于调用基类方法</strong></p>
+<p><strong>不可以将基类对象和地址赋给派生类引用和指针</strong></p>
+<h3 id="继承is-a关系">继承：is-a关系</h3>
+<p>C++有 3 种继承方式:公有继承、保护继承和私有继承。</p>
+<p>公有继承是最常用的方式，它建立一种 is-a 关系，即派生类对象也是一个基类对象，可以对基类对象执行的任何操作，也可以对派生类对象执行。</p>
+<h3 id="多态公有继承">多态公有继承</h3>
+<p>2种重要的机制可用于实现多态公有继承：</p>
+<ul>
+<li>在派生类中重新定义基类的方法。</li>
+<li>使用虚方法。</li>
+</ul>
+<p>如果方法是通过引用或指针而不是对象调用的，它将确定使用哪一种方法。<strong>如果没有使用关键字 virtual，程序将根据引用类型或指针类型选择方法; 如果使用了 virtual,程序将根据引用或指针指向的对象的类型来选择方法</strong>。也就是说没有virtual就看左边的类型，有就看右边的类型。</p>
+<p><strong>为什么需要虚析构函数</strong>：如果析构函数不是虚的，则将只调用对应于指针类型的析构函数。也就是说基类引用或者指针指向派生类对象的时候，如果基类析构函数不是虚的，就只会调用基类析构，如果是虚的，就会先调用派生类析构，再自动调用基类析构。</p>
+<h3 id="静态联编和动态联编">静态联编和动态联编</h3>
+<p>将源代码中的函数调用解释为执行特定的函数代码块被称为<strong>函数名联编</strong>(binding)。
+在编译过程中进行联编被称为<strong>静态联编</strong>(static binding)，又称为早期联编(early binding)。编译器必须生成能够在程序运行时选择正确的虚方法的代码，这被称为<strong>动态联编</strong> (dynamic binding)，又称为晚期联编 (late binding)。</p>
+<p>将派生类引用或指针转换为基类引用或指针被称为向上强制转换 (upcasting)，这使公有继承不需要进行显式类型转换。</p>
+<p>相反的过程&ndash;将基类指针或引用转换为派生类指针或引用——称为向下强制转换 (dwncasting)。如果不使用显式类型转换，则向下强制转换是不允许的。</p>
+<p>通常，<strong>编译器处理虚函数的方法</strong>是: 给每个对象添加一个隐藏成员。隐藏成员中保存了一个指向函数地址数组的指针。这种数组称为<strong>虚函数表</strong> (vitual function table, vtbl)。虚函数表中存储了为类对象进行声明的虚函数的地址。例如，基类对象包含一个指针，该指针指向基类中所有虚函数的地址表。派生类对象将包含一个指向独立地址表的指针。如果派生类提供了虚函数的新定义，该虚函数表将保存新函数的地址:如果派生类没有重新定义虚函数，该 vtbl 将保存函数原始版本的地址。如果派生类定义了新的虚函数，则该函数的地址也将被添加到 vtbl中。</p>
+<p>使用虚函数时，在内存和执行速度方面有一定的成本，包括:</p>
+<ul>
+<li>每个对象都将增大，增大量为存储地址的空间;</li>
+<li>对于每个类，编译器都创建一个虚函数地址表 (数组);</li>
+<li>对于每个函数调用，都需要执行一项额外的操作，即到表中查找地址。
+虽然非虚函数的效率比虚函数稍高，但不具备动态联编功能。</li>
+</ul>
+<p><strong>构造函数不能是虚函数</strong>，析构函数应当是虚函数，除非类不用做基类</p>
+<p><strong>友元不能是虚函数，因为友元不是类成员</strong>，而只有成员才能是虚函数。</p>
+<p><strong>重新定义继承的方法并不是重载</strong>。如果在派生类中重新定义函数，将不是使用相同的函数特征标覆盖基类声明，而是隐藏同名的基类方法，不管参数特征标如何。这引出了两条经验规则: 第一，如果重新定义继承的方法，应确保与原来的原型完全相同，但如果返回类型是基类引用或指针，则可以修改为指向派生类的引用或指针 (这种例外是新出现的)。这种特性被称为返回类型协变(covariance ofreturn type)，因为允许返回类型随类类型的变化而变化:</p>
+<h3 id="访问控制protected">访问控制：protected</h3>
+<p>关键字 protected 与 private 相似，在类外只能用公有类成员来访问 protected 部分中的类成员。private 和 protected之间的区别只有在基类派生的类中才会表现出来。派生类的成员可以直接访问基类的保护成员，但不能直接访问基类的私有成员。</p>
+<p>也就是对派生类不私有，对外私有。</p>
+<h3 id="抽象基类">抽象基类</h3>
+<p>C++通过使用纯虚函数(pure virtual function) 提供未实现的函数。当类声明中包含纯虚函数时，则不能创建该类的对象。</p>
+<h3 id="继承和动态内存分配">继承和动态内存分配</h3>
+<p>假设派生类使用了new，在这种情况下，必须为派生类定义显式析构函数、复制构造函数和赋值运算符。</p>
+<h3 id="类设计回顾">类设计回顾</h3>
+<p>由于友元函数并非类成员，因此不能继承。然而，您可能希望派生类的友元函数能够使用基类的友元函数。为此，可以通过强制类型转换将，派生类引用或指针转换为基类引用或指针，然后使用转换后的指针或引用来调用基类的友元函数</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-06-07</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Twitter" data-sharer="twitter" data-url="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" data-title="C&#43;&#43; Primer Plus 笔记" data-hashtags="书籍,c&#43;&#43;"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Facebook" data-sharer="facebook" data-url="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" data-hashtag="书籍"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Hacker News" data-sharer="hackernews" data-url="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" data-title="C&#43;&#43; Primer Plus 笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" data-title="C&#43;&#43; Primer Plus 笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" data-title="C&#43;&#43; Primer Plus 笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E4%B9%A6%E7%B1%8D/">书籍</a>,&nbsp;<a href="/tags/c&#43;&#43;/">c&#43;&#43;</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2023/04/transfer_files_through_wifi/" class="prev" rel="prev" title="PC向开发板传输文件 通过wifi"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>PC向开发板传输文件 通过wifi</a></div>
+</div>
+<div id="comments"><div id="gitalk" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.110.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2022 - 2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">渤海深处</a></span>
+                <div >
+                    <i class="fa fa-user"></i>&nbsp;<span id="busuanzi_value_site_uv"></span>&nbsp;|&nbsp;
+                    <i class="fa fa-eye"></i>&nbsp;<span id="busuanzi_value_site_pv"></span>
+                </div>
+            </div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{"gitalk":{"admin":["rustInTheRubble"],"clientID":"68458203ea232e8a6c8a","clientSecret":"c9fd1ba7687d190c51b209d6e54d10d314432ac3","id":"2023-05-31T10:37:43+08:00","owner":"rustInTheRubble","repo":"rustInTheRubble.github.io","title":"C++ Primer Plus 笔记"}}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
