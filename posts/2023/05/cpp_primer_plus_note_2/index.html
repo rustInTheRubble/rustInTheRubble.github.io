@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note_2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-08T10:00:24+08:00" />
-<meta property="article:modified_time" content="2023-06-14T15:08:47+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta property="article:modified_time" content="2023-06-19T12:03:16+08:00" /><meta property="og:site_name" content="My cool site" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="C&#43;&#43; Primer Plus 笔记 (14-18章)"/>
 <meta name="twitter:description" content="C&#43;&#43;中的代码重用 包含对象成员的类 使用 explicit 防止单参数构造函数的隐式转换 私有继承 使用私有继承，基类的公有成员和保护成员都将成为派生类的私有成员。"/>
@@ -27,8 +27,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/"
-        },"genre": "posts","keywords": "书籍, c\u002b\u002b","wordcount":  5532 ,
-        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/","datePublished": "2023-06-08T10:00:24+08:00","dateModified": "2023-06-14T15:08:47+08:00","publisher": {
+        },"genre": "posts","keywords": "书籍, c\u002b\u002b","wordcount":  13389 ,
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/","datePublished": "2023-06-08T10:00:24+08:00","dateModified": "2023-06-19T12:03:16+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -71,8 +71,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">C++ Primer Plus 笔记 (14-18章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-08">2023-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 5532 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 12 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-08">2023-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 13389 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 27 分钟&nbsp;
 
                 <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
                 <span id="busuanzi_container_page_pv">
@@ -112,6 +112,28 @@
         <li><a href="#函数对象">函数对象</a></li>
         <li><a href="#算法">算法</a></li>
         <li><a href="#其他库">其他库</a></li>
+      </ol>
+    </li>
+    <li><a href="#输入输出和文件">输入、输出和文件</a>
+      <ol>
+        <li><a href="#c输入和输出概述">C++输入和输出概述</a></li>
+        <li><a href="#使用cout进行输出">使用cout进行输出</a></li>
+        <li><a href="#使用cin进行输入">使用cin进行输入</a></li>
+        <li><a href="#文件输入和输出">文件输入和输出</a></li>
+        <li><a href="#内核格式化">内核格式化</a></li>
+      </ol>
+    </li>
+    <li><a href="#探讨c新标准">探讨C++新标准</a>
+      <ol>
+        <li><a href="#复习前面介绍过的c11功能">复习前面介绍过的C++11功能</a></li>
+        <li><a href="#移动语义和右值引用">移动语义和右值引用</a></li>
+        <li><a href="#新的类功能">新的类功能</a></li>
+        <li><a href="#lambda函数">Lambda函数</a></li>
+        <li><a href="#包装器">包装器</a></li>
+        <li><a href="#可变参数模板">可变参数模板</a></li>
+        <li><a href="#c11新增的其他功能">C++11新增的其他功能</a></li>
+        <li><a href="#语言变化">语言变化</a></li>
+        <li><a href="#接下来的任务">接下来的任务</a></li>
       </ol>
     </li>
   </ol>
@@ -270,7 +292,7 @@
 <p>类模板可以指定多个泛型，也可以有非类型参数:
 <code>template &lt;class T,class TT, int n&gt;</code></p>
 <p>类模板还可以包含本身就是模板的参数:
-<code>template &lt; template &lt;typename T&gt; class CL，typename U,int z&gt;</code></p>
+<code>template &lt; template &lt;typename T&gt; class CL, typename U,int z&gt;</code></p>
 <p>类模板可以被部分具体化:</p>
 <h2 id="友元异常和其他">友元、异常和其他</h2>
 <h3 id="友元">友元</h3>
@@ -599,13 +621,577 @@
 </div>
 </div><p><code>unordered</code> 几个开头的是无序关联容器，底层的差别在于，关联容器是基于树结构的，而无序关联容器是基于数据结构哈希表。</p>
 <h3 id="函数对象">函数对象</h3>
-<h3 id="算法">算法</h3>
+<p>很多STL 算法都使用函数对象——也叫函数符 (functor)。函数符是可以以函数方式与()结合使用的任意对象。这包括函数名、指向函数的指针和重载了()运算符的类对象(即定义了函数 operator()()的类)。</p>
+<p>对于所有内置的算术运算符、关系运算符和逻辑运算符，STL 都提供了等价的函数符。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">运算符</th>
+<th style="text-align:center">相应的函数符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">+</td>
+<td style="text-align:center">plus</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">minus</td>
+</tr>
+<tr>
+<td style="text-align:center">*</td>
+<td style="text-align:center">multiplies</td>
+</tr>
+<tr>
+<td style="text-align:center">/</td>
+<td style="text-align:center">divides</td>
+</tr>
+<tr>
+<td style="text-align:center">%</td>
+<td style="text-align:center">modulus</td>
+</tr>
+<tr>
+<td style="text-align:center">-</td>
+<td style="text-align:center">negate</td>
+</tr>
+<tr>
+<td style="text-align:center">==</td>
+<td style="text-align:center">equal_to</td>
+</tr>
+<tr>
+<td style="text-align:center">!=</td>
+<td style="text-align:center">not_equal_to</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">greater</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">less</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;=</td>
+<td style="text-align:center">greater_equal</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;=</td>
+<td style="text-align:center">less_equal</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;&amp;</td>
+<td style="text-align:center">logical_and</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">!</td>
+<td style="text-align:center">logical_not</td>
+</tr>
+</tbody>
+</table>
+<p>例如使用 plus</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="p">..</span>
+</span></span><span class="line"><span class="cl"><span class="n">plus</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">add</span><span class="p">;</span> <span class="c1">// create aplus&lt;double&gt; object
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="n">add</span><span class="p">(</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">);</span> <span class="c1">// using plus&lt;double&gt;::operator()()
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="算法">算法</h3>
+<p>有些算法有两个版本: 就地版本和复制版本。STL 的约定是，复制版本的名称将以_copy 结尾。复制版本将接受一个额外的输出迭代器参数，该参数指定结果的放置位置。</p>
+<p><code>next_permutation()</code> 算法将区间内容转换为下一种排列方式</p>
+<p><code>count()</code> 函数。它将一个区间和一个值作为参数，并返回这个值在区间中出现的次数。</p>
 <h3 id="其他库">其他库</h3>
+<p><strong>vector、valarray和array 的区别</strong></p>
+<p><code>vector</code> 模板类是一个容器类和算法系统的一部分，它支持面向容器的操作，如排序、插入、重新排列、搜索、将数据转移到其他容器中等。而 <code>valarray</code> 类模板是面向数值计算的，不是 STL的一部分。例如，它没有 push_back()和 nsert()方法，但为很多数学运算提供了一个简单、直观的接口。最后 <code>array</code> 是为替代内置数组而设计的，它通过提供更好、更安全的接口，让数组更紧凑，效率更高。Array 表示长度固定的数组，因此不支持 push_back()和 insert()，但提供了多个STL 方法，包括 begin()、end()、rbegin()和rend()，这使得很容易将STL算法用于array对象。</p>
+<p><code>valarray</code> 可以使用 apply() 方法，apply()不修改调用对象，而是返回一个包含结果的新对象。另外提供了 sum(), max(), min()等方法。valarray类确实有一个 resize( )方法，但不能像使用 vector 的 push_back 时那样自动调整大小。没有支持插入、排序、搜索等操作的方法。</p>
+<p>模板 <code>initializer_list</code> 是 C++11 新增的。您可使用初始化列表语法将 STL容器初始化为一系列值:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vi</span><span class="p">{</span><span class="mi">10</span><span class="p">};</span> <span class="c1">//??
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 这将调用哪个构造函数呢?
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vi</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// case A: 10 uninitialized elements
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vi</span><span class="p">([</span><span class="mi">10</span><span class="p">]);</span> <span class="c1">// case B: ielement set to 10
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果类有接受 initializer_list 作为参数的构造函数，则使用语法将调用该构造函数。因此在
+这个示例中，对应的是情形 B。
+所有 initializer_list 元素的类型都必须相同，但编译器将进行必要的转换</p>
+<h2 id="输入输出和文件">输入、输出和文件</h2>
+<h3 id="c输入和输出概述">C++输入和输出概述</h3>
+<p>C++程序把输入和输出看作字节流。</p>
+<p>输出时，程序首先填满缓冲区，然后把整块数据传输给硬盘，并清空缓冲区，以备下一批输出使用。这被称为刷新缓冲区 (flushing the buffer)。</p>
+<p>键盘输入每次提供一个字符，因此在这种情况下，程序无需缓冲区来帮助匹配不同的数据传输速率。然而，对键盘输入进行缓冲可以让用户在将输入传输给程序之前返回并更正。C++程序通常在用户按下回车键时刷新输入缓冲区。</p>
+<p>流、缓冲区和 iostream 文件</p>
+<ul>
+<li>streambuf 类为缓冲区提供了内存，并提供了用于填充缓冲区、访问缓冲区内容、刷新缓冲区和管理缓冲区内存的类方法:</li>
+<li>ios_base 类表示流的一般特征，如是否可读取、是二进制流还是文本流等:</li>
+<li>ios 类基于ios_base，其中包括了一个指向 streambuf 对象的指针成员;</li>
+<li>ostream 类是从 ios 类派生而来的，提供了输出方法;</li>
+<li>istream 类也是从 ios 类派生而来的，提供了输入方法;</li>
+<li>iostream 类是基于 istream 和 ostream 类的，因此继承了输入方法和输出方法。</li>
+</ul>
+<p>C++的 iostream 类库管理了很多细节。例如，在程序中包含 stream 文件将自动创建8个流对象(4个用于窄字符流，4个用于宽字符流)。cin 对象对应于标准输入流。cout 对象与标准输出流相对应。wcout 对象与此类似，但处理的是wchar_t 类型。cerr 对象与标准错误流相对应，可用于显示错误消息。clog 对象也对应着标准错误流。</p>
+<h3 id="使用cout进行输出">使用cout进行输出</h3>
+<p>ostream类重新定义了&laquo;运算符，方法是将其重载为输出。对于C++中所有的基本类型该类都提供了operator&laquo;() 函数的定义。</p>
+<p>对于char* 类型，使用字符串中的终止空字符来确定何时停止显示字符。</p>
+<p>插入运算符的所有化身的返回类型都是 ostream &amp;。也就是说，原型的格式如下:
+<code>ostream &amp; operator&lt;&lt;(type);</code>
+以实现拼接输出</p>
+<p>ostream 类还提供了 put()方法和 write()方法，前者用于显示字符，后者用于显示字符串。</p>
+<p>控制符 flush 刷新缓冲区，而控制符 endl 刷新缓冲区，并插入一个换行符。这两个控制符的使用方式与变量名相同</p>
+<p>ostream插入运算符将值转换为文本格式。在默认情况下，<strong>格式化</strong>值的方式如下。</p>
+<ul>
+<li>对于 char 值，如果它代表的是可打印字符，则将被作为一个字符显示在宽度为一个字符的字段中</li>
+<li>对于数值整型，将以十进制方式显示在一个刚好容纳该数字及负号(如果有的话)的字段中。字符串被显示在宽度等于该字符串长度的字段中。</li>
+</ul>
+<p>浮点数的默认行为有变化。下面详细说明了老式实现和新实现之间的区别。</p>
+<ul>
+<li>新式:浮点类型被显示为6位，末尾的0不显示(注意，显示的数字位数与数字被存储时精度没有任何关系)。数字以定点表示法显示还是以科学计数法表示(参见第3 章)，取决于它的值。具体来说，当指数大于等于6 或小于等于-5 时，将使用科学计数法表示。另外，字段宽度恰好容纳数字和负号(如果有的话)。默认的行为对应于带%g 说明符的标准C库函数 fprintf()。</li>
+<li>老式:浮点类型显示为带6位小数，末尾的0不显示(注意，显示的数字位数与数字被存储时的精度没有任何关系)。数字以定点表示法显示还是以科学计数法表示(参见第3 章)，取决于它的值。另外，字段宽度恰好容纳数字和负号(如果有的话)。</li>
+</ul>
+<p>要控制整数以十进制、十六进制还是八进制显示，可以使用 dec、hex 和 oct 控制符。
+<code>cout&lt;&lt;hex;</code></p>
+<p>使用width 成员函数将长度不同的数字放到宽度相同的字段中，width()方法只影响接下来显示的一个项目，然后字段宽度将恢复为默认值。
+<code>cout.width(12);</code></p>
+<p>在默认情况下，cout 用空格填充字段中未被使用的部分，可以用 fil()成员函数来改变填充字符
+<code>cout.fill('*');</code></p>
+<p>使用precision()成员函数设置浮点数显示精度。和 width()的情况不同，但与 ill( )类似，新的精度设置将一直有效，直到被重新设置。
+<code>cout.precision(2);</code></p>
+<p>setf( )函数(用于 set 标记)，能够控制多种格式化特性。
+使 cout 显示末尾小数点:
+<code>cout.setf(ios_base::showpoint);</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常量</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ios_base ::boolalpha</td>
+<td style="text-align:left">输入和输出bool值，可以为true或false</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base ::showbase</td>
+<td style="text-align:left">对于输出，使用 C++基数前缀(0, 0x)</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base ::showpoint</td>
+<td style="text-align:left">显示末尾的小数点</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base ::uppercase</td>
+<td style="text-align:left">对于16进制输出，使用大写字母，E表示法</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base ::showpos</td>
+<td style="text-align:left">在正数前面加上+</td>
+</tr>
+</tbody>
+</table>
+<p>为简化工作，C++在头文件 iomanip中提供了其他一些控制符
+setprecision()控制符接受一个指定精度的整数参数; setfill()控制符按受一个指定填充字符的 char 参数; setw()控制符接受一个指定字段宽度的整数参数。</p>
+<h3 id="使用cin进行输入">使用cin进行输入</h3>
+<p>istream类(在iostream头文件中定义)重载了抽取运算符&raquo;，使之能够识别c++这些基本类型</p>
+<p>可以将 hex、oct 和 dec 控制符与 cin 一起使用，来指定将整数输入解释为十六进制、八进制还是十进制格式。</p>
+<p>cin 或 cout 对象包含一个描述流状态(stream state)的数据成员(从ios base类那里继承的)。流状态(被定义为ostate 类型，而ostate 是一种 bitmask 类型)<strong>由3个ios_base 元素组成:eofbit、badbit 或 failbit，其中每个元素都是一位，可以是1(设置)或0(清除)</strong>。当 cin 操作到达文件末尾时，它将设置 eofbit;当 cin 操作未能读取到预期的字符时，它将设置 failbit。I/0 失败(如试图读取不可访问的文件或试图写入写保护的磁盘)，也可能将failbit 设置为1。在一些无法诊断的失败破坏流时，badbit 元素将被设置(实现没有必要就哪些情况下设置 failbit，哪些情况下设置 badbit 达成一致)。<strong>当全部 3 个状态位都设置为0时，说明一切顺利</strong>。程序可以检查流状态，并使用这种信息来决定下一步做什么。</p>
+<p>假设某个输入函数设置了 eofbit，在默认情况下，这不会导致异常被引发。但可以使用 exceptions()方法来控制异常如何被处理。</p>
+<p>只有在流状态良好 (所有的位都被清除) 的情况下，这个测试才返回 true:
+<code>while (cin &gt;&gt; input)</code></p>
+<ul>
+<li>方法get(char&amp;)和get(void)提供不跳过空白的单字符输入功能;</li>
+<li>函数 get(char*,int,char)和 getline(char*,int,char)在默认情况下读取整行而不是一个单词。</li>
+</ul>
+<p>peek( )函数返回输入中的下一个字符，但不抽取输入流中的字符</p>
+<p>putback( )函数将一个字符插入到输入字符串中，被插入的字符将是下一条输入语句读取的第一个字符。</p>
+<h3 id="文件输入和输出">文件输入和输出</h3>
+<p>要让程序<strong>写入文件</strong>，必须这样做:</p>
+<ol>
+<li>创建一个ofstream 对象来管理输出流</li>
+<li>将该对象与特定的文件关联起来;</li>
+<li>以使用 cout 的方式使用该对象，唯一的区别是输出将进入文件，而不是屏幕</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ofstream</span> <span class="n">fout</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">fout</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#34;jar.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ofstream</span> <span class="nf">fout</span><span class="p">(</span><span class="s">&#34;jar.txt&#34;</span><span class="p">);</span> <span class="c1">// 作用与上面两步相同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">fout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;data&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>读取文件</strong>的要求与写入文件相似:</p>
+<ol>
+<li>创建一个ifstream对象来管理输入流</li>
+<li>将该对象与特定的文件关联起来;</li>
+<li>以使用cin的方式使用该对象。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">ifstream</span> <span class="n">fin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">fin</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">&#34;jar.txt&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">ofstream</span> <span class="nf">fis</span><span class="p">(</span><span class="s">&#34;jar.txt&#34;</span><span class="p">);</span> <span class="c1">// 作用与上面两步相同
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="n">fin</span> <span class="o">&gt;&gt;</span> <span class="s">&#34;data&#34;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>当输入和输出流对象过期(如程序终止) 时，到文件的连接将自动关闭。另外，也可以使用 close()方法来<strong>显式地关闭</strong>到文件的连接:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">fout</span><span class="p">.</span><span class="n">close</span><span class="p">();</span> <span class="c1">// close output connection to file
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">fin</span><span class="p">.</span><span class="n">close</span><span class="p">();</span> <span class="c1">// close input connection to file
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>关闭这样的连接并不会删除流，而只是断开流到文件的连接。然而，<strong>流管理装置仍被保留</strong>,可以打开新文件。</p>
+<p>较新的 C++实现提供了一种更好的<strong>检查文件是否被打开</strong>的方法—— <code>is_open()</code> 方法:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">fin</span><span class="p">.</span><span class="n">is_open</span><span class="p">())</span> <span class="c1">// open attempt failed
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>is_open()</code> 比 <code>fin.fail()</code> 、<code>fin.good()</code> 和 <code>!fin</code> 更好</p>
+<p>对于 <code>int main(int argc，char *argv[])</code>
+argc 为命令行中的参数个数，其中包括命令名本身。argv 变量为一个指针，它指向一个指向 char 的指针</p>
+<p>open 可以接受两个参数，第二个控制打开模式。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">常量</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ios_base::in</td>
+<td style="text-align:left">打开文件，以便读取</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::out</td>
+<td style="text-align:left">打开文件，以便写入</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::ate</td>
+<td style="text-align:left">打开文件，并移到文件尾</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::app</td>
+<td style="text-align:left">追加到文件尾</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::trunc</td>
+<td style="text-align:left">如果文件存在，则截短文件</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::binary</td>
+<td style="text-align:left">二进制文件</td>
+</tr>
+</tbody>
+</table>
+<p>ifstream open()方法和构造函数用 ios_base::in (打开文件以读取)作为模式参数的<strong>默认值</strong>，而ofstream open()方法和构造函数用 ios_base::out | ios_base::trunc(打开文件，以读取并截短文件)作为默值。</p>
+<p>c++ 使用 <code>ifstream fin(filename, c++mode);</code> 而 c 使用 <code>fopen(filename，cmode);</code></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">c++模式</th>
+<th style="text-align:left">c模式</th>
+<th style="text-align:left">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">ios_base::in</td>
+<td style="text-align:left">&ldquo;r&rdquo;</td>
+<td style="text-align:left">打开以读取</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::out</td>
+<td style="text-align:left">&ldquo;w&rdquo;</td>
+<td style="text-align:left">等价于ios_base::out | ios_base::trunc</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::out | ios_base::trunc</td>
+<td style="text-align:left">&ldquo;w&rdquo;</td>
+<td style="text-align:left">打开以写入，如果已经存在，则截短文件</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::out | ios_base::app</td>
+<td style="text-align:left">&ldquo;a&rdquo;</td>
+<td style="text-align:left">打开以写入，只追加</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::out | ios_base::out</td>
+<td style="text-align:left">&ldquo;r+&rdquo;</td>
+<td style="text-align:left">打开以读写，在文件允许的位置写入</td>
+</tr>
+<tr>
+<td style="text-align:left">ios_base::out | ios_base::out</td>
+<td style="text-align:left">ios_base::binary</td>
+<td style="text-align:left">&ldquo;w+&rdquo;</td>
+</tr>
+<tr>
+<td style="text-align:left">c++mode | ios_base::binary</td>
+<td style="text-align:left">&ldquo;cmodeb&rdquo;</td>
+<td style="text-align:left">以C++mode(或相应的cmode)和二进制模式打开;</td>
+</tr>
+<tr>
+<td style="text-align:left">c++mode | ios_base::ate</td>
+<td style="text-align:left">&ldquo;cmode&rdquo;</td>
+<td style="text-align:left">以指定的模式打开，并移到文件尾。C 使用一个独立的函数调用，而不是模式编码。</td>
+</tr>
+</tbody>
+</table>
+<p>c++mode 是一个 openmode 值，如 ios_base::in; 而 cmode 是相应的 C 模式字符串，如“r”。</p>
+<ul>
+<li>二进制格式对于数字来说比较精确，因为它存储的是值的内部表示，因此不会有转换误差或舍入误差。</li>
+<li>以二进制格式保存数据的速度更快，因为不需要转换，并可以大块地存储数据。</li>
+<li>二进制格式通常占用的空间较小，这取决于数据的特征。</li>
+<li>然而，如果另一个系统使用另一种内部表示，则可能无法将数据传输给该系统。</li>
+</ul>
+<p>二进制格式可以用 <code>read()</code> 和 <code>write()</code> 读写</p>
+<p>随机存取 使用 <code>seekg()</code> 和 <code>seekp()</code> ，前者将输入指针移到指定的文件位置，后者将输出指针移到指定的文件位置</p>
+<h3 id="内核格式化">内核格式化</h3>
+<p>C++库还提供了sstream族，它们使用相同的接口提供程序和string对象之间的IO。这些类使得能够使用istream 和ostream 方法来抽取字符串中的信息，并对要放入到字符串中的信息进行格式化。</p>
+<h2 id="探讨c新标准">探讨C++新标准</h2>
+<h3 id="复习前面介绍过的c11功能">复习前面介绍过的C++11功能</h3>
+<ul>
+<li>C++11新增了类型long long 和 unsigned longlong，以支持 64 位(或更宽)的整型;新增了类型 char16_t和 char32_t，以支持16位和 32位的字符表示:还新增了“原始”字符串。</li>
+<li>扩大了大括号括起的列表(初始化列表)的适用范围，使其可用于所有内置类型和用户定义的类型。</li>
+<li>初始化列表语法可防止缩窄，即禁止将数值赋给无法存储它的数值变量。</li>
+<li>auto 自动类型推断。</li>
+<li>decltype 将变量的类型声明为表达式指定的类型。</li>
+<li>在函数名和参数列表后面(而不是前面)指定返回类型，配合使用 decltype 来指定模板函数的返回类型</li>
+<li>using = 创建别名，相比于 typedef，可以支持模板部分具体化。<br> <code>template&lt;typename T&gt;</code> <br> <code> using arr12 = std::array&lt;T,12&gt;;</code></li>
+<li>新增了关键字 nullptr ，用于表示空指针:它是指针类型，不能转换为整型类型。为向后兼容，C++11仍允许使用0来表示空指针，因此表达式 nullptr==0 为 true</li>
+<li>C++11 摒弃了 auto_ptr 并新增了三种智能指针: unique_ptr、shared_ptr 和weak_ptr</li>
+<li>C++11 摒弃了遗产规范。添加了关键字 noexcept</li>
+<li>使用 class 或 struct 定义的枚举。新枚举要求进行显式限定，以免发生名称冲突。</li>
+<li>引入了关键词 explicit , 以禁止单参数构造函数导致的自动转换。</li>
+<li>支持类内成员初始化，可使用等号或大括号版本的初始化，但不能使用圆括号版本的初始化。效果与构造函数提供成员初始化列表相同。</li>
+<li>基于范围的 for 循环</li>
+<li>新增了 STL容器forward_list、unordered_map、unordered_multimap、unordered_set 和 unordered_multiset，新增了模板 array</li>
+<li>新增了 STL 方法cbegin()和 cend()。这些新方法将元素视为 const。</li>
+<li>valarray 升级，支持 begin() 和 end()</li>
+<li>保留 export 关键字， 但终止了在C++98中的用法</li>
+<li>无需再避免 多层嵌套的 <code>&gt;</code> 和运算符 <code>&gt;&gt;</code> 混淆</li>
+<li>新增右值引用 &amp;&amp;</li>
+</ul>
+<h3 id="移动语义和右值引用">移动语义和右值引用</h3>
+<p>移动语义：将一个对象中的资源移动到另外一个对象中。</p>
+<p>右值引用 <code>&amp;&amp;</code> 的主要应用就是重载了移动构造函数，利用了将亡值，将将亡值的空间内容交换到要拷贝的对象中。减少了深拷贝。</p>
+<p>右值引用可以绑定到临时对象（右值），通过将资源的所有权从一个对象转移到另一个对象，避免了不必要的复制和销毁操作，提高程序效率。移动语义在大规模数据结构中尤为重要，例如std::vector、std::string等。</p>
+<p>右值引用还可以用于函数模板的完美转发，即将参数以原始的形式传递给下一个函数，避免了不必要的复制和类型转换，提高了程序效率。</p>
+<p>右值引用可以使用std::move()函数将对象强制转换为右值，使得该对象的所有权可以被移交，从而避免了内存泄漏的问题。</p>
+<h3 id="新的类功能">新的类功能</h3>
+<p>C++11 新增了两个:移动构造函数和移动赋值运算符</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="n">Someclass</span><span class="o">::</span><span class="n">Someclass</span><span class="p">(</span><span class="n">Someclass</span> <span class="o">&amp;&amp;</span><span class="p">);</span> <span class="c1">// defaulted move constructor
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">Someclass</span> <span class="o">&amp;</span> <span class="n">Someclass</span><span class="o">::</span><span class="k">operator</span><span class="p">(</span><span class="n">Someclass</span> <span class="o">&amp;&amp;</span><span class="p">);</span><span class="c1">// defaulted move assignment
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>默认的移动构造函数和移动赋值运算符的工作方式与复制版本类似: 执行逐成员初始化并复制内置类型。如果成员是类对象，将使用相应类的构造函数和赋值运算符，就像参数为右值一样。<strong>如果定义了移动构造函数和移动赋值运算符，这将调用它们: 否则将调用复制构造函数和复制赋值运算符</strong>。</p>
+<p><strong>默认的方法</strong>，例如，您提供了移动构造函数，因此编译器不会自动创建默认的构造函数、复制构造函数和复制赋值构造函数在这些情况下，您可使用关键字 <code>default</code> 显式地声明这些方法的默认版本
+<code>Someclass &amp; operator=(const Someclass &amp;) = default;</code>
+<strong>禁用的方法</strong>，关键字 <code>delete</code> 可用于禁止编译器使用特定方法，类似于 <code>default</code> 。</p>
+<p>C++11 允许您在一个构造函数的定义中使用另一个构造函数。这被称为<strong>委托</strong>，因为构造函数暂时将创建对象的工作委托给另一个构造函数。委托使用成员初始化列表语法的变种</p>
+<p>使用 using 继承基类构造函数，让派生类继承基类的所有构造函数(默认构造函数、复制构造函数和移动构造函数除外)，但不会使用与派生类构造函数的特征标匹配的构造函数</p>
+<p>假设基类声明了一个虚方法，而您决定在派生类中提供不同的版本，这将覆盖旧版本。在C++11 中，可使用虚说明符 <code>override</code> 指出您要覆盖一个虚函数: 将其放在参数列表后面。如果声明与基类方法不匹配，编译器将视为错误。您可能想禁止派生类覆盖特定的虚方法，为此可在参数列表后面加上 <code>final</code> 。</p>
+<h3 id="lambda函数">Lambda函数</h3>
+<p>使用整个 lambda 表达式<strong>替换函数指针或函数符构造函数</strong>,让您能够使用匿名函数,即无需给函数命名。在 C++11 中，对于接受函数指针或函数符的函数，可使用匿名函数定义 (lambda)作为其参数。</p>
+<p>使用 <code>[]</code> 替代了函数名(这就是匿名的由来); 没有声明返回类型。返回类型相当于使用decltyp 根据返回值推断得到的，这里为 bool。如果 lamda 不包含返回语，推断出的返回类型将为 void</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">f3</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;}</span> <span class="c1">// 其 lambda 表达式
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>可给 lambda 指定一个名称，并使用该名称多次</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">auto</span> <span class="n">mod3</span><span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span><span class="k">return</span> <span class="n">x</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span><span class="mi">0</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="n">countl</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">nl</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">nl</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">mod3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">count2</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">n2</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">n2</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">mod3</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>lambad 可访问作用域内的任何动态变量，要捕获要使用的变量，可将其名称<strong>放在中括号内</strong>。如果只指定了变量名，如 <code>[z]</code> ，将按值访问变量;如果在名称前加上&amp;,如 <code>[&amp;count]</code> ，将按引用访问变量。</p>
+<h3 id="包装器">包装器</h3>
+<p>C++11 提供了其他的包装器，包括模板 bind、men_fm和reference_wrapper 以及包装器function 。</p>
+<p>模板 function 是在头文件 functional 中声明的，它从调用特征标的角度定义了一个对象，可用于包装调用特征标相同的函数指针、函数对象或 lambda 表达式。可以用来缩小可执行代码的规模。</p>
+<h3 id="可变参数模板">可变参数模板</h3>
+<p>可变参数模板(variadic template) 让您能够创建这样的模板函数和模板类，即可接受可变数量的参数。
+要创建可变参数模板，需要理解几个要点:</p>
+<ul>
+<li>模板参数包(parameter pack);</li>
+<li>函数参数包</li>
+<li>展开(unpack)参数包;</li>
+<li>递归。</li>
+</ul>
+<p>C++11 提供了一个用省略号表示的元运算符 (meta-operator)，让您能够声明表示模板参数包的标识符,模板参数包基本上是一个类型列表。同样，它还让您能够声明表示函数参数包的标识符，而函数参数包基本上是一个值列表。其语法如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span> <span class="c1">// Args is a template parameter pack
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">show_list1</span><span class="p">(</span><span class="n">Args</span><span class="p">...</span> <span class="n">args</span><span class="p">)</span> <span class="c1">// args is a function parameter pack
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>其中，Args 是一个模板参数包，而 args 是一个函数参数包。与其他参数名一样，可将这些参数包的名称指定为任何符合 C++标识符规则的名称。Args 和T的差别在于，T 与一种类型匹配，而Args 与任意数量(包括零)的类型匹配。</p>
+<p><strong>展开参数包</strong>，将函数参数包展开，对列表中的第一项进行处理，再将余下的内容传递给<strong>递归</strong>调用，以此类推，直到列表为空。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">show_list3</span><span class="p">(</span> <span class="n">T</span> <span class="n">value</span><span class="p">,</span> <span class="n">Args</span><span class="p">...</span> <span class="n">args</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="p">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">show_list3</span><span class="p">(</span><span class="n">args</span><span class="p">...);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可进一步改进，单独写0，1个参数的情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// definition for 0 parameters
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="n">show</span> <span class="nf">list</span><span class="p">(){}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// definition for l parameter
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">show</span> <span class="n">list</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//definition for 2 or more parameters
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span><span class="p">...</span> <span class="n">Args</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="n">show_list</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">,</span> <span class="n">Args</span><span class="o">&amp;</span><span class="p">...</span> <span class="n">args</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">show_list</span><span class="p">(</span><span class="n">args</span><span class="p">...);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="c11新增的其他功能">C++11新增的其他功能</h3>
+<p>为解决<strong>并行性</strong>问题，C++定义了一个支持线程化执行的内存模型，添加了关键字 thread_local，提供了相关的库支持。关键字 thread_local 将变量声明为静态存储，其持续性与特定线程相关即定义这种变量的线程过期时，变量也将过期。
+库支持由原子操作 (atomic operation)库和线程支持库组成，其中原子操作库提供了头文件 atomic.而线程支持库提供了头文件thread、mutex、condition_variable和future。</p>
+<p>C++11 添加了多个专用库。</p>
+<ul>
+<li>头文件 random 支持的可扩展随机数库提供了大量比 rand( )复杂的随机数工具。</li>
+<li>头文件chrono 提供了处理时间间隔的途径。</li>
+<li>头文件 tuple 支持模板 tuple。tuple 对象是广义的 pair 对象。pair 对象可存储两个类型不同的值，而 tuple对象可存储任意多个类型不同的值。</li>
+<li>头文件 ratio 支持的编译阶段有理数算术库让您能够准确地表示任何有理数，其分子和分母可用最宽的整型表示。它还支持对这些有理数进行算术运算。</li>
+<li>头文件 regex 支持的正则表达式库。</li>
+</ul>
+<p>低级编程
+低级编程中的“低级”指的是抽象程度，而不是编程质量，低级意味着接近于计算机硬件和机器语言使用的比特和字节。</p>
+<ul>
+<li>放松了 POD (Plain Old Data) 的要求</li>
+<li>允许共用体的成员有构造函数和析构函数</li>
+<li>解决了内存对齐问题</li>
+<li>constexpr 机制让编译器能够在编译阶段计算结果为常量的表达式，让 const 变量可存储在只读内存中</li>
+</ul>
+<p>杂项</p>
+<ul>
+<li>提供了一种创建用户自定义字面量的机制: 字面量运算符 (literal operator)。使用这种机制可定义二进制字面量，如1001001b，相应的字面量运算符将把它转换为整数值。</li>
+<li>提供了调试工具 assert。</li>
+<li>加强了对元编程 (metaprogramming)的支持。元编程指的是编写这样的程序，它创建或修改其程序，甚至修改自身。</li>
+</ul>
+<h3 id="语言变化">语言变化</h3>
+<p>主要指 Boost 项目和TR1</p>
+<h3 id="接下来的任务">接下来的任务</h3>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-06-14</span>
+                <span>更新于 2023-06-19</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
