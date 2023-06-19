@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note_2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-08T10:00:24+08:00" />
-<meta property="article:modified_time" content="2023-06-19T12:03:16+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta property="article:modified_time" content="2023-06-19T12:05:43+08:00" /><meta property="og:site_name" content="My cool site" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="C&#43;&#43; Primer Plus 笔记 (14-18章)"/>
 <meta name="twitter:description" content="C&#43;&#43;中的代码重用 包含对象成员的类 使用 explicit 防止单参数构造函数的隐式转换 私有继承 使用私有继承，基类的公有成员和保护成员都将成为派生类的私有成员。"/>
@@ -28,7 +28,7 @@
             "@type": "WebPage",
             "@id": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/"
         },"genre": "posts","keywords": "书籍, c\u002b\u002b","wordcount":  13389 ,
-        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/","datePublished": "2023-06-08T10:00:24+08:00","dateModified": "2023-06-19T12:03:16+08:00","publisher": {
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/","datePublished": "2023-06-08T10:00:24+08:00","dateModified": "2023-06-19T12:05:43+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -1162,7 +1162,7 @@ argc 为命令行中的参数个数，其中包括命令名本身。argv 变量�
 </div><h3 id="c11新增的其他功能">C++11新增的其他功能</h3>
 <p>为解决<strong>并行性</strong>问题，C++定义了一个支持线程化执行的内存模型，添加了关键字 thread_local，提供了相关的库支持。关键字 thread_local 将变量声明为静态存储，其持续性与特定线程相关即定义这种变量的线程过期时，变量也将过期。
 库支持由原子操作 (atomic operation)库和线程支持库组成，其中原子操作库提供了头文件 atomic.而线程支持库提供了头文件thread、mutex、condition_variable和future。</p>
-<p>C++11 添加了多个专用库。</p>
+<p>C++11 添加了多个<strong>专用库</strong>。</p>
 <ul>
 <li>头文件 random 支持的可扩展随机数库提供了大量比 rand( )复杂的随机数工具。</li>
 <li>头文件chrono 提供了处理时间间隔的途径。</li>
@@ -1170,7 +1170,7 @@ argc 为命令行中的参数个数，其中包括命令名本身。argv 变量�
 <li>头文件 ratio 支持的编译阶段有理数算术库让您能够准确地表示任何有理数，其分子和分母可用最宽的整型表示。它还支持对这些有理数进行算术运算。</li>
 <li>头文件 regex 支持的正则表达式库。</li>
 </ul>
-<p>低级编程
+<p><strong>低级编程</strong>
 低级编程中的“低级”指的是抽象程度，而不是编程质量，低级意味着接近于计算机硬件和机器语言使用的比特和字节。</p>
 <ul>
 <li>放松了 POD (Plain Old Data) 的要求</li>
@@ -1178,7 +1178,7 @@ argc 为命令行中的参数个数，其中包括命令名本身。argv 变量�
 <li>解决了内存对齐问题</li>
 <li>constexpr 机制让编译器能够在编译阶段计算结果为常量的表达式，让 const 变量可存储在只读内存中</li>
 </ul>
-<p>杂项</p>
+<p><strong>杂项</strong></p>
 <ul>
 <li>提供了一种创建用户自定义字面量的机制: 字面量运算符 (literal operator)。使用这种机制可定义二进制字面量，如1001001b，相应的字面量运算符将把它转换为整数值。</li>
 <li>提供了调试工具 assert。</li>
