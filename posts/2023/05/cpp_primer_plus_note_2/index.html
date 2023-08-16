@@ -9,14 +9,14 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note_2/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-06-08T10:00:24+08:00" />
-<meta property="article:modified_time" content="2023-06-19T12:05:43+08:00" /><meta property="og:site_name" content="My cool site" />
+<meta property="article:modified_time" content="2023-07-11T17:50:24+08:00" /><meta property="og:site_name" content="My cool site" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="C&#43;&#43; Primer Plus 笔记 (14-18章)"/>
 <meta name="twitter:description" content="C&#43;&#43;中的代码重用 包含对象成员的类 使用 explicit 防止单参数构造函数的隐式转换 私有继承 使用私有继承，基类的公有成员和保护成员都将成为派生类的私有成员。"/>
 <meta name="application-name" content="渤海深处的博客">
 <meta name="apple-mobile-web-app-title" content="渤海深处的博客"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note_2/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note_2/" /><link rel="prev" href="https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note/" /><link rel="next" href="https://rustintherubble.github.io/posts/2023/08/cpp_emplace_push/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
@@ -27,8 +27,8 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/"
-        },"genre": "posts","keywords": "书籍, c\u002b\u002b","wordcount":  13389 ,
-        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/","datePublished": "2023-06-08T10:00:24+08:00","dateModified": "2023-06-19T12:05:43+08:00","publisher": {
+        },"genre": "posts","keywords": "书籍, c\u002b\u002b","wordcount":  13614 ,
+        "url": "https:\/\/rustintherubble.github.io\/posts\/2023\/05\/cpp_primer_plus_note_2\/","datePublished": "2023-06-08T10:00:24+08:00","dateModified": "2023-07-11T17:50:24+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -71,8 +71,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">C++ Primer Plus 笔记 (14-18章)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>渤海深处</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>c++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-08">2023-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 13389 字&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 27 分钟&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-06-08">2023-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 13614 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 28 分钟&nbsp;
 
                 <i class="fa fa-eye" aria-hidden="true"></i>&nbsp;            
                 <span id="busuanzi_container_page_pv">
@@ -351,10 +351,10 @@
 <h3 id="类型转换运算符">类型转换运算符</h3>
 <p>更严格地限制允许的类型转换，并添加 4 个类型转换运算符，使转换过程更规范:</p>
 <ul>
-<li><code>dynamic_cast</code>; 使得能够在类层次结构中进行向上转换</li>
-<li><code>const_cast</code>; 用于执行只有一种用途的类型转换，即改变值为 const 或 volatile</li>
-<li><code>static_cast</code>;</li>
-<li><code>reinterpret_cast</code> 。</li>
+<li><code>dynamic_cast</code>; 安全转换，使得能够在类层次结构中对指针或引用进行向上或向下转换(派生类到基类)，转换是执行运行时检查，若非法指针返回NULL，引用抛出异常。</li>
+<li><code>const_cast</code>; 用于执行只有一种用途的类型转换，去除 const 或 volatile</li>
+<li><code>static_cast</code>; 用于基本数据类型之间的转换，以及类层次结构中基类和派生类之间指针或引用的转换。在类层次结构中，它可以执行安全的上行转换（从派生类到基类），也可以执行下行转换（从基类到派生类），但下行不执行运行时检查以确保转换的安全性</li>
+<li><code>reinterpret_cast</code> 。用于低级别的类型转换，可以在任意指针（或引用）类型之间进行转换，也可以在指针和整数之间进行转换。它不执行运行时检查，因此使用时需要谨慎</li>
 </ul>
 <h2 id="string类和标准模板库">string类和标准模板库</h2>
 <h3 id="string类">string类</h3>
@@ -1191,7 +1191,7 @@ argc 为命令行中的参数个数，其中包括命令名本身。argv 变量�
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>更新于 2023-06-19</span>
+                <span>更新于 2023-07-11</span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"></div>
@@ -1208,7 +1208,8 @@ argc 为命令行中的参数个数，其中包括命令名本身。argv 变量�
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/2023/05/cpp_primer_plus_note/" class="prev" rel="prev" title="C&#43;&#43; Primer Plus 笔记 (9-13章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>C++ Primer Plus 笔记 (9-13章)</a></div>
+    <div class="post-nav"><a href="/posts/2023/05/cpp_primer_plus_note/" class="prev" rel="prev" title="C&#43;&#43; Primer Plus 笔记 (9-13章)"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>C++ Primer Plus 笔记 (9-13章)</a>
+            <a href="/posts/2023/08/cpp_emplace_push/" class="next" rel="next" title="关于 C&#43;&#43; STL vector 中的 push_back 和 emplace_back，reserve 和 resize">关于 C++ STL vector 中的 push_back 和 emplace_back，reserve 和 resize<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 <div id="comments"><div id="gitalk" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://github.com/gitalk/gitalk"></a>Gitalk</a>.

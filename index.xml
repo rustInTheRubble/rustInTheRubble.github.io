@@ -3,9 +3,17 @@
         <title>渤海深处的博客</title>
         <link>https://rustintherubble.github.io/</link>
         <description>This is my cool site</description>
-        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Thu, 08 Jun 2023 10:00:24 &#43;0800</lastBuildDate>
+        <generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Wed, 16 Aug 2023 15:01:03 &#43;0800</lastBuildDate>
             <atom:link href="https://rustintherubble.github.io/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>关于 C&#43;&#43; STL vector 中的 push_back 和 emplace_back，reserve 和 resize</title>
+    <link>https://rustintherubble.github.io/posts/2023/08/cpp_emplace_push/</link>
+    <pubDate>Wed, 16 Aug 2023 15:01:03 &#43;0800</pubDate>
+    <author>渤海深处</author>
+    <guid>https://rustintherubble.github.io/posts/2023/08/cpp_emplace_push/</guid>
+    <description><![CDATA[push_back 和 emplace_back 在 vector 尾部插入元素有两种方法：push_back() 和 emplace_back() 函数原型 void push_back (const value_type&amp; val);void push_back (value_type&amp;&amp; val); template &lt;class... Args&gt; void emplace_back (Args&amp;&amp;... args); 调用 push_back 的过程 将调用构造函数来创建临时对象。]]></description>
+</item>
+<item>
     <title>C&#43;&#43; Primer Plus 笔记 (14-18章)</title>
     <link>https://rustintherubble.github.io/posts/2023/05/cpp_primer_plus_note_2/</link>
     <pubDate>Thu, 08 Jun 2023 10:00:24 &#43;0800</pubDate>
@@ -76,14 +84,6 @@
     <author>渤海深处</author>
     <guid>https://rustintherubble.github.io/posts/2022/11/30/asn1c/</guid>
     <description><![CDATA[ASN.1编码我用的asn1c库，在使用UPER编码的时候，返回值有个需要注意的地方 uper编码可以使用 asn_encode_to_buffer uper_encode_to_buffer uper编码源代码 asn_enc]]></description>
-</item>
-<item>
-    <title>移植adb到iMX6开发板(arm)</title>
-    <link>https://rustintherubble.github.io/posts/2022/11/27/adb_for_arm/</link>
-    <pubDate>Sun, 27 Nov 2022 15:30:30 &#43;0800</pubDate>
-    <author>渤海深处</author>
-    <guid>https://rustintherubble.github.io/posts/2022/11/27/adb_for_arm/</guid>
-    <description><![CDATA[说明 交叉编译与本地编译 编译器和目标程序都是相同架构的编译过程，被称为本地编译 编译器和目标程序运行在不同架构的编译过程，被称为交叉编译,如编译]]></description>
 </item>
 </channel>
 </rss>
